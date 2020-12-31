@@ -11,11 +11,11 @@
         android:label="fragment_main"
         tools:layout="@layout/fragment_main">
         <action
-            android:id="@+id/action_mainFragment_to_readMessageFragment"
-            app:destination="@id/readMessageFragment" />
+            android:id="@+id/action_mainFragment_to_readSmsFragment"
+            app:destination="@id/readSmsFragment" />
         <action
-            android:id="@+id/action_mainFragment_to_sendMessageFragment2"
-            app:destination="@id/sendMessageFragment2" />
+            android:id="@+id/action_mainFragment_to_sendSmsFragment"
+            app:destination="@id/sendSmsFragment" />
         <action
             android:id="@+id/action_mainFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
@@ -51,15 +51,15 @@
             app:destination="@id/phoneAuthFragment" />
     </fragment>
     <fragment
-        android:id="@+id/sendMessageFragment2"
-        android:name="com.nexters.lettero.presentation.message.fragment.SendMessageFragment"
-        android:label="fragment_send_message"
-        tools:layout="@layout/fragment_send_message">
+        android:id="@+id/sendSmsFragment"
+        android:name="com.nexters.lettero.presentation.sms.fragment.SendSmsFragment"
+        android:label="fragment_send_Sms"
+        tools:layout="@layout/fragment_send_sms">
         <action
-            android:id="@+id/action_sendMessageFragment2_to_sendResultDialogFragment"
+            android:id="@+id/action_sendSmsFragment_to_sendResultDialogFragment"
             app:destination="@id/sendResultDialogFragment" />
         <action
-            android:id="@+id/action_sendMessageFragment2_to_userNameDialogFragment"
+            android:id="@+id/action_sendSmsFragment_to_userNameDialogFragment"
             app:destination="@id/userNameDialogFragment" />
         <argument
             android:name="isAnonymous"
@@ -67,14 +67,14 @@
             app:argType="boolean" />
     </fragment>
     <fragment
-        android:id="@+id/readMessageFragment"
-        android:name="com.nexters.lettero.presentation.message.fragment.ReadMessageFragment"
-        android:label="fragment_read_message"
-        tools:layout="@layout/fragment_read_message" />
+        android:id="@+id/readSmsFragment"
+        android:name="com.nexters.lettero.presentation.sms.fragment.ReadSmsFragment"
+        android:label="fragment_read_Sms"
+        tools:layout="@layout/fragment_read_sms" />
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.nexters.lettero.presentation.mypage.fragment.SettingFragment"
-        android:label="fragment_read_message"
+        android:label="fragment_read_Sms"
         tools:layout="@layout/fragment_app_setting" />
     <fragment
         android:id="@+id/phoneAuthFragment"
@@ -90,19 +90,19 @@
     </fragment>
     <dialog
         android:id="@+id/sendResultDialogFragment"
-        android:name="com.nexters.lettero.presentation.message.dialog.SendResultDialogFragment"
+        android:name="com.nexters.lettero.presentation.sms.dialog.SendResultDialogFragment"
         android:label="SendResultDialogFragment">
         <action
-            android:id="@+id/action_sendResultDialogFragment_to_sendMessageFragment2"
-            app:destination="@id/sendMessageFragment2" />
+            android:id="@+id/action_sendResultDialogFragment_to_sendSmsFragment"
+            app:destination="@id/sendSmsFragment" />
     </dialog>
     <dialog
         android:id="@+id/userNameDialogFragment"
-        android:name="com.nexters.lettero.presentation.message.dialog.UserNameDialogFragment"
+        android:name="com.nexters.lettero.presentation.sms.dialog.UserNameDialogFragment"
         android:label="fragment_user_name_dialog"
         tools:layout="@layout/fragment_user_name_dialog">
         <action
-            android:id="@+id/action_userNameDialogFragment_to_sendMessageFragment2"
-            app:destination="@id/sendMessageFragment2" />
+            android:id="@+id/action_userNameDialogFragment_to_sendSmsFragment"
+            app:destination="@id/sendSmsFragment" />
     </dialog>
 </navigation>

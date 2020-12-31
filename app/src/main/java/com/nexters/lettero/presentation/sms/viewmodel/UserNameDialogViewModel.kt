@@ -1,4 +1,4 @@
-package com.nexters.lettero.presentation.message.viewmodel
+package com.nexters.lettero.presentation.sms.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

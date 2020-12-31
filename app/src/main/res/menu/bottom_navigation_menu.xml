@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/postbox"
-        android:icon="@drawable/selector_menu_postbox"
+        android:id="@+id/sms"
+        android:icon="@drawable/selector_menu_sms"
         android:title="" />
 
     <item
-        android:id="@+id/send_message"
-        android:icon="@drawable/selector_menu_send_message"
+        android:id="@+id/send_sms"
+        android:icon="@drawable/selector_menu_send_sms"
         android:title="" />
 
     <item

@@ -1,4 +1,4 @@
-package com.nexters.lettero.presentation.message.fragment
+package com.nexters.lettero.presentation.sms.fragment
 
 import android.os.Bundle
 import android.telephony.PhoneNumberFormattingTextWatcher
@@ -10,18 +10,18 @@ import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.nexters.lettero.R
-import com.nexters.lettero.databinding.FragmentSendMessageBinding
+import com.nexters.lettero.databinding.FragmentSendSmsBinding
 import com.nexters.lettero.presentation.base.BaseFragment
-import com.nexters.lettero.presentation.message.viewmodel.SendMessageViewModel
+import com.nexters.lettero.presentation.sms.viewmodel.SendSmsViewModel
 
-class SendMessageFragment : BaseFragment<FragmentSendMessageBinding, SendMessageViewModel>() {
-    override val layoutRes: Int = R.layout.fragment_send_message
-    override var viewModel: SendMessageViewModel = SendMessageViewModel()
+class SendSmsFragment : BaseFragment<FragmentSendSmsBinding, SendSmsViewModel>() {
+    override val layoutRes: Int = R.layout.fragment_send_sms
+    override var viewModel: SendSmsViewModel = SendSmsViewModel()
 
     private val sendResult = Observer<Boolean> { result ->
         if (result) {
-            findNavController().navigate(R.id.action_sendMessageFragment2_to_sendResultDialogFragment)
-            (viewModel as SendMessageViewModel).initDefaultValue()
+            findNavController().navigate(R.id.action_sendSmsFragment_to_sendResultDialogFragment)
+            (viewModel as SendSmsViewModel).initDefaultValue()
         }
     }
 
@@ -29,7 +29,7 @@ class SendMessageFragment : BaseFragment<FragmentSendMessageBinding, SendMessage
         super.onViewCreated(view, savedInstanceState)
 
         binding.view = this
-        binding.viewmodel = viewModel as? SendMessageViewModel
+        binding.viewmodel = viewModel as? SendSmsViewModel
 
         init()
     }
@@ -37,15 +37,15 @@ class SendMessageFragment : BaseFragment<FragmentSendMessageBinding, SendMessage
     fun init() {
         binding.receiverEdittext.addTextChangedListener(PhoneNumberFormattingTextWatcher())
         binding.sendMsgContent.addTextChangedListener { edtResult ->
-            (viewModel as SendMessageViewModel).setMsgChangeResult(edtResult)
+            (viewModel as SendSmsViewModel).setMsgChangeResult(edtResult)
         }
 
-        (viewModel as SendMessageViewModel).sendResult.observe(viewLifecycleOwner, sendResult)
+        (viewModel as SendSmsViewModel).sendResult.observe(viewLifecycleOwner, sendResult)
         observeDialogResult()
     }
 
     fun observeDialogResult() {
-        val navBackStackEntry = findNavController().getBackStackEntry(R.id.sendMessageFragment2)
+        val navBackStackEntry = findNavController().getBackStackEntry(R.id.sendSmsFragment)
 
         val observer = LifecycleEventObserver { _, event ->
             if (event == Lifecycle.Event.ON_RESUME
@@ -53,7 +53,7 @@ class SendMessageFragment : BaseFragment<FragmentSendMessageBinding, SendMessage
             ) {
                 val result = navBackStackEntry.savedStateHandle.get<Boolean>("isAnonymous");
 
-                (viewModel as SendMessageViewModel).isAnonymous.value = result
+                (viewModel as SendSmsViewModel).isAnonymous.value = result
             }
         }
         navBackStackEntry.lifecycle.addObserver(observer)
@@ -71,9 +71,9 @@ class SendMessageFragment : BaseFragment<FragmentSendMessageBinding, SendMessage
 
     fun startUserNameDialog(view: View) {
         val bundle =
-            bundleOf("isAnonymous" to (viewModel as SendMessageViewModel).isAnonymous.value)
+            bundleOf("isAnonymous" to (viewModel as SendSmsViewModel).isAnonymous.value)
         findNavController().navigate(
-            R.id.action_sendMessageFragment2_to_userNameDialogFragment,
+            R.id.action_sendSmsFragment_to_userNameDialogFragment,
             bundle
         )
     }

@@ -6,16 +6,16 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.nexters.lettero.presentation.message.viewmodel.UserNameDialogViewModel" />
+            type="com.nexters.lettero.presentation.sms.viewmodel.UserNameDialogViewModel" />
         <variable
             name="view"
-            type="com.nexters.lettero.presentation.message.dialog.UserNameDialogFragment" />
+            type="com.nexters.lettero.presentation.sms.dialog.UserNameDialogFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:context=".presentation.message.dialog.UserNameDialogFragment">
+        tools:context=".presentation.sms.dialog.UserNameDialogFragment">
 
         <RadioGroup
             android:id="@+id/user_name_group"

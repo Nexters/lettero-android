@@ -2,15 +2,15 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.message.fragment.SendMessageFragment">
+    tools:context=".presentation.sms.fragment.SendSMSFragment">
 
     <data>
         <variable
             name="view"
-            type="com.nexters.lettero.presentation.message.fragment.SendMessageFragment" />
+            type="com.nexters.lettero.presentation.sms.fragment.SendSmsFragment" />
         <variable
             name="viewmodel"
-            type="com.nexters.lettero.presentation.message.viewmodel.SendMessageViewModel" />
+            type="com.nexters.lettero.presentation.sms.viewmodel.SendSmsViewModel" />
 
     </data>
 
@@ -216,7 +216,7 @@
                 android:layout_marginEnd="12dp"
                 android:src="@drawable/ic_send"
                 android:background="@drawable/confirm_btn"
-                android:onClick="@{viewmodel::sendMessage}"
+                android:onClick="@{viewmodel::sendSms}"
                 app:layout_constraintEnd_toEndOf="@id/send_msg_footer"
                 app:layout_constraintBottom_toBottomOf="@id/send_msg_footer" />
 
