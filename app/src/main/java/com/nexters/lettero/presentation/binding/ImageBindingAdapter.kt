@@ -1,4 +1,4 @@
-package com.nexters.lettero.util
+package com.nexters.lettero.presentation.binding
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
@@ -7,12 +7,12 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.nexters.lettero.R
 
 @BindingAdapter("app:imgUrl")
-fun loadImage(imageView: ImageView, imageUrl: String?) {
+fun ImageView.loadImage(imageUrl: String?) {
     imageUrl?.let {
-        Glide.with(imageView)
+        Glide.with(this)
             .load(imageUrl)
             .error(R.drawable.mypage_profile)
             .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-            .into(imageView)
+            .into(this)
     }
 }

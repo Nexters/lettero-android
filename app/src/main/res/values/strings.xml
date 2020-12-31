@@ -15,7 +15,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- in box -->
-    <string name="in_box">문자함</string>
+    <string name="box">문자함</string>
+    <string name="in_box">받은문자</string>
+    <string name="out_box">보낸문자</string>
 
     <!-- send 화면 -->
     <string name="send_title">메세지 작성</string>
@@ -56,7 +58,8 @@
     <string name="phone_auth_req">인증 요청</string>
     <string name="phone_auth_result_info">인증번호를 입력해 주세요~</string>
 
+    <!-- action -->
     <string name="confrim">완료</string>
-
     <string name="cancel">취소</string>
+    <string name="select">선택</string>
 </resources>
