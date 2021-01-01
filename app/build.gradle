@@ -40,7 +40,8 @@ android {
 }
 
 dependencies {
-    def nav_version = "2.3.2"
+    def kakao_version = '2.3.0'
+    def nav_version = '2.3.2'
     def lifecycleVersion = '2.2.0'
     def retrofitVersion = '2.9.0'
 
@@ -60,6 +61,9 @@ dependencies {
     //google play services
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
     implementation 'com.google.android.gms:play-services-auth-api-phone:17.4.0'
+
+    // kakao
+    implementation "com.kakao.sdk:v2-user:$kakao_version"
 
     // navigation component
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"

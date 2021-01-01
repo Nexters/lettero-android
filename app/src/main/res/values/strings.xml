@@ -1,5 +1,9 @@
 <resources>
+    <!-- app -->
     <string name="app_name">Lettero</string>
+
+    <!-- kakao -->
+    <string name="kakao_native_app_key">9836b85584b8fc691b258ebe20a9031a</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
