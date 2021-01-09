@@ -7,14 +7,13 @@ import androidx.navigation.findNavController
 import com.nexters.lettero.R
 import com.nexters.lettero.databinding.FragmentIntroBinding
 import com.nexters.lettero.presentation.base.BaseFragment
-import com.nexters.lettero.presentation.base.ViewModel
 import com.nexters.lettero.presentation.intro.viewmodel.IntroViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class IntroFragment : BaseFragment<FragmentIntroBinding, IntroViewModel>() {
     override val layoutRes: Int = R.layout.fragment_intro
-    override var viewModel: ViewModel = IntroViewModel()
+    override var viewModel: IntroViewModel = IntroViewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

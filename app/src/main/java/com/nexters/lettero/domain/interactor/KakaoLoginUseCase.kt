@@ -7,7 +7,8 @@ import com.kakao.sdk.auth.rx
 import com.nexters.lettero.domain.interactor.base.BaseUseCase
 import io.reactivex.Single
 
-class KakaoLoginUseCase(private val app: Application) : BaseUseCase<Single<OAuthToken>, Unit> {
+class KakaoLoginUseCase(private val app: Application) :
+    BaseUseCase<Single<OAuthToken>, Unit> {
 
     override fun buildUseCase(params: Unit) =
         Single.just(LoginClient.instance.isKakaoTalkLoginAvailable(app.applicationContext))

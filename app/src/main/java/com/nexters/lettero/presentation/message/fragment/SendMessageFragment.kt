@@ -1,6 +1,5 @@
 package com.nexters.lettero.presentation.message.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.telephony.PhoneNumberFormattingTextWatcher
 import android.view.View
@@ -13,15 +12,14 @@ import androidx.navigation.fragment.findNavController
 import com.nexters.lettero.R
 import com.nexters.lettero.databinding.FragmentSendMessageBinding
 import com.nexters.lettero.presentation.base.BaseFragment
-import com.nexters.lettero.presentation.base.ViewModel
 import com.nexters.lettero.presentation.message.viewmodel.SendMessageViewModel
 
 class SendMessageFragment : BaseFragment<FragmentSendMessageBinding, SendMessageViewModel>() {
     override val layoutRes: Int = R.layout.fragment_send_message
-    override var viewModel: ViewModel = SendMessageViewModel()
+    override var viewModel: SendMessageViewModel = SendMessageViewModel()
 
     private val sendResult = Observer<Boolean> { result ->
-        if(result) {
+        if (result) {
             findNavController().navigate(R.id.action_sendMessageFragment2_to_sendResultDialogFragment)
             (viewModel as SendMessageViewModel).initDefaultValue()
         }
@@ -51,7 +49,8 @@ class SendMessageFragment : BaseFragment<FragmentSendMessageBinding, SendMessage
 
         val observer = LifecycleEventObserver { _, event ->
             if (event == Lifecycle.Event.ON_RESUME
-                && navBackStackEntry.savedStateHandle.contains("isAnonymous")) {
+                && navBackStackEntry.savedStateHandle.contains("isAnonymous")
+            ) {
                 val result = navBackStackEntry.savedStateHandle.get<Boolean>("isAnonymous");
 
                 (viewModel as SendMessageViewModel).isAnonymous.value = result
@@ -71,7 +70,11 @@ class SendMessageFragment : BaseFragment<FragmentSendMessageBinding, SendMessage
     }
 
     fun startUserNameDialog(view: View) {
-        val bundle = bundleOf("isAnonymous" to (viewModel as SendMessageViewModel).isAnonymous.value)
-        findNavController().navigate(R.id.action_sendMessageFragment2_to_userNameDialogFragment, bundle)
+        val bundle =
+            bundleOf("isAnonymous" to (viewModel as SendMessageViewModel).isAnonymous.value)
+        findNavController().navigate(
+            R.id.action_sendMessageFragment2_to_userNameDialogFragment,
+            bundle
+        )
     }
 }

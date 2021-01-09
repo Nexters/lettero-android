@@ -12,7 +12,7 @@ import com.nexters.lettero.BR
 
 abstract class BaseFragment<VB : ViewDataBinding, VM : ViewModel> : Fragment() {
     protected lateinit var binding: VB
-    protected abstract var viewModel: ViewModel
+    protected abstract var viewModel: VM
 
     @get:LayoutRes
     protected abstract val layoutRes: Int
