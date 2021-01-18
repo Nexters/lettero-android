@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.nexters.lettero.presentation.main.viewmodel.MainViewModel" />
+            type="com.nexters.lettero.presentation.main.viewmodel.MainBaseViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
