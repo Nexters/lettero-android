@@ -3,11 +3,57 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/introFragment">
 
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.nexters.lettero.ui.main.fragment.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_myPageFragment"
+            app:destination="@id/myPageFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_readMessageFragment"
+            app:destination="@id/readMessageFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_sendMessageFragment2"
+            app:destination="@id/sendMessageFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/introFragment"
+        android:name="com.nexters.lettero.ui.intro.fragment.IntroFragment"
+        android:label="fragment_intro"
+        tools:layout="@layout/fragment_intro" >
+        <action
+            android:id="@+id/action_introFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_introFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.nexters.lettero.ui.login.fragment.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myPageFragment"
+        android:name="com.nexters.lettero.ui.mypage.fragment.MyPageFragment"
+        android:label="fragment_my_page"
+        tools:layout="@layout/fragment_my_page" />
+    <fragment
+        android:id="@+id/sendMessageFragment2"
+        android:name="com.nexters.lettero.ui.message.fragment.SendMessageFragment"
+        android:label="fragment_send_message"
+        tools:layout="@layout/fragment_send_message" />
+    <fragment
+        android:id="@+id/readMessageFragment"
+        android:name="com.nexters.lettero.ui.message.fragment.ReadMessageFragment"
+        android:label="fragment_read_message"
+        tools:layout="@layout/fragment_read_message" />
 </navigation>
