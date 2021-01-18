@@ -10,9 +10,9 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.nexters.lettero.BR
 
-abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment() {
+abstract class BaseFragment<VB : ViewDataBinding, VM : ViewModel> : Fragment() {
     protected lateinit var binding: VB
-    protected abstract var viewModel: BaseViewModel
+    protected abstract var viewModel: ViewModel
 
     @get:LayoutRes
     protected abstract val layoutRes: Int

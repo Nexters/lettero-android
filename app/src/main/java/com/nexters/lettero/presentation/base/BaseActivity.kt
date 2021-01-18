@@ -7,9 +7,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.nexters.lettero.BR
 
-abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompatActivity() {
+abstract class BaseActivity<VB : ViewDataBinding, VM : ViewModel> : AppCompatActivity() {
     protected lateinit var binding: VB
-    protected abstract var viewModel: BaseViewModel
+    protected abstract var viewModel: ViewModel
 
     @get:LayoutRes
     protected abstract val layoutRes: Int
