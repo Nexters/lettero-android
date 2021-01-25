@@ -9,55 +9,52 @@
         android:id="@+id/mainFragment"
         android:name="com.nexters.lettero.presentation.main.fragment.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
-        <action
-            android:id="@+id/action_mainFragment_to_myPageFragment"
-            app:destination="@id/myPageFragment" />
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_readMessageFragment"
             app:destination="@id/readMessageFragment" />
         <action
             android:id="@+id/action_mainFragment_to_sendMessageFragment2"
             app:destination="@id/sendMessageFragment2" />
+        <action
+            android:id="@+id/action_mainFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
     <fragment
         android:id="@+id/introFragment"
         android:name="com.nexters.lettero.presentation.intro.fragment.IntroFragment"
         android:label="fragment_intro"
-        tools:layout="@layout/fragment_intro" >
+        tools:layout="@layout/fragment_intro">
         <action
             android:id="@+id/action_introFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/introFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_introFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/introFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.nexters.lettero.presentation.login.fragment.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_loginFragment_to_phoneAuthFragment"
             app:destination="@id/phoneAuthFragment" />
     </fragment>
     <fragment
-        android:id="@+id/myPageFragment"
-        android:name="com.nexters.lettero.presentation.mypage.fragment.MyPageFragment"
-        android:label="fragment_my_page"
-        tools:layout="@layout/fragment_my_page" >
-        <action
-            android:id="@+id/action_myPageFragment_to_settingFragment"
-            app:destination="@id/settingFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/sendMessageFragment2"
         android:name="com.nexters.lettero.presentation.message.fragment.SendMessageFragment"
         android:label="fragment_send_message"
-        tools:layout="@layout/fragment_send_message" >
+        tools:layout="@layout/fragment_send_message">
         <action
             android:id="@+id/action_sendMessageFragment2_to_sendResultDialogFragment"
             app:destination="@id/sendResultDialogFragment" />
@@ -66,8 +63,8 @@
             app:destination="@id/userNameDialogFragment" />
         <argument
             android:name="isAnonymous"
-            app:argType="boolean"
-            android:defaultValue="false" />
+            android:defaultValue="false"
+            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/readMessageFragment"
@@ -78,16 +75,12 @@
         android:id="@+id/settingFragment"
         android:name="com.nexters.lettero.presentation.mypage.fragment.SettingFragment"
         android:label="fragment_read_message"
-        tools:layout="@layout/fragment_app_setting" >
-        <action
-            android:id="@+id/action_settingFragment_to_myPageFragment"
-            app:destination="@id/myPageFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_app_setting" />
     <fragment
         android:id="@+id/phoneAuthFragment"
         android:name="com.nexters.lettero.presentation.login.fragment.PhoneAuthFragment"
         android:label="fragment_phone_auth"
-        tools:layout="@layout/fragment_phone_auth" >
+        tools:layout="@layout/fragment_phone_auth">
         <action
             android:id="@+id/action_phoneAuthFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
@@ -98,7 +91,7 @@
     <dialog
         android:id="@+id/sendResultDialogFragment"
         android:name="com.nexters.lettero.presentation.message.dialog.SendResultDialogFragment"
-        android:label="SendResultDialogFragment" >
+        android:label="SendResultDialogFragment">
         <action
             android:id="@+id/action_sendResultDialogFragment_to_sendMessageFragment2"
             app:destination="@id/sendMessageFragment2" />
@@ -107,7 +100,7 @@
         android:id="@+id/userNameDialogFragment"
         android:name="com.nexters.lettero.presentation.message.dialog.UserNameDialogFragment"
         android:label="fragment_user_name_dialog"
-        tools:layout="@layout/fragment_user_name_dialog" >
+        tools:layout="@layout/fragment_user_name_dialog">
         <action
             android:id="@+id/action_userNameDialogFragment_to_sendMessageFragment2"
             app:destination="@id/sendMessageFragment2" />

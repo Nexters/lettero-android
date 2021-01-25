@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menu_in_box"
-        android:icon="@drawable/selector_menu_in_box"
+        android:id="@+id/postbox"
+        android:icon="@drawable/selector_menu_postbox"
         android:title="" />
 
     <item
-        android:id="@+id/menu_send"
-        android:icon="@drawable/selector_menu_send"
+        android:id="@+id/send_message"
+        android:icon="@drawable/selector_menu_send_message"
         android:title="" />
 
     <item
-        android:id="@+id/menu_my_page"
+        android:id="@+id/my_page"
         android:icon="@drawable/selector_menu_my_page"
         android:title="" />
 </menu>

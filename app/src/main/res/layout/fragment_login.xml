@@ -14,7 +14,30 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="8dp"
         android:background="@drawable/bg_fragment">
+
+        <ImageView
+            android:id="@+id/img_logo_ci"
+            android:layout_width="233dp"
+            android:layout_height="135dp"
+            android:layout_marginTop="84dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_logo_ci" />
+
+        <TextView
+            android:id="@+id/text_ci"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/app_ci"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/img_logo_ci"
+            app:layout_constraintStart_toStartOf="@+id/img_logo_ci"
+            app:layout_constraintTop_toBottomOf="@+id/img_logo_ci" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_login"

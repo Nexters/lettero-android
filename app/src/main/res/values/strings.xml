@@ -1,6 +1,7 @@
 <resources>
     <!-- app -->
     <string name="app_name">Lettero</string>
+    <string name="app_ci">레트로한 문자, 레터로!</string>
 
     <!-- kakao -->
     <string name="kakao_native_app_key">9836b85584b8fc691b258ebe20a9031a</string>

@@ -13,7 +13,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/bg">
 
         <com.nexters.lettero.presentation.widget.RetroAppBar
             android:id="@+id/retro_app_bar"

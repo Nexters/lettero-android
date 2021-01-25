@@ -2,10 +2,11 @@ package com.nexters.lettero.presentation.mypage.fragment
 
 import android.os.Bundle
 import android.view.View
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.findNavController
 import com.nexters.lettero.R
 import com.nexters.lettero.databinding.FragmentMyPageBinding
 import com.nexters.lettero.presentation.base.BaseFragment
+import com.nexters.lettero.presentation.main.fragment.MainFragmentDirections
 import com.nexters.lettero.presentation.mypage.viewmodel.MyPageViewModel
 
 class MyPageFragment : BaseFragment<FragmentMyPageBinding, MyPageViewModel>() {
@@ -20,6 +21,9 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding, MyPageViewModel>() {
     }
 
     fun moveToAppSetting(view: View) {
-        findNavController().navigate(R.id.action_myPageFragment_to_settingFragment)
+        activity?.run {
+            val action = MainFragmentDirections.actionMainFragmentToSettingFragment()
+            findNavController(R.id.nav_host_fragment).navigate(action)
+        }
     }
 }
