@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    
+    <color name="lettero_background">#E5E5E5</color>
+    <color name="device_bar">#646464</color>
+
+    <!-- 보내기 화면 color -->
+    <color name="send_title">#D4D4D4</color>
+    <color name="send_box">#F0F0F0</color>
+    <color name="send_name">#3586FF</color>
+
 </resources>
