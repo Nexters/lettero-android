@@ -14,4 +14,19 @@
     <string name="profile_edit">프로필 편집</string>
     <string name="manage_block">차단 관리</string>
     <string name="app_setting">앱 설정</string>
+    <string name="connect_kakao">카카오톡으로 연결</string>
+    <string name="logout">로그아웃</string>
+    <string name="resignation">탈퇴하기</string>
+    <string name="ask">문의하기</string>
+    <string name="privacy_policy">개인정보처리방침</string>
+    <string name="terms_of_service">서비스이용약관</string>
+    <string name="receive_noti">알림수신</string>
+
+    <string name="edit">편집하기</string>
+    <string name="edit_change">변경하기</string>
+    <string name="profile_img">프로필 이미지</string>
+    <string name="nickname">닉네임</string>
+    <string name="phone_number">전화번호</string>
+
+    <string name="complete">완료</string>
 </resources>

@@ -32,4 +32,8 @@
     <style name="LetteroEditTextStyle" parent="android:Widget.EditText">
         <item name="android:fontFamily">@font/neodgm</item>
     </style>
+
+    <style name="LetteroSwitchStyle">
+        <item name="colorControlActivated">@color/send_name</item>
+    </style>
 </resources>
