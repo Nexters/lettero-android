@@ -1,78 +1,34 @@
 {
   "project_info": {
-    "project_number": "745037027981",
-    "firebase_url": "https://eyelong-f1dbc.firebaseio.com",
-    "project_id": "eyelong-f1dbc",
-    "storage_bucket": "eyelong-f1dbc.appspot.com"
+    "project_number": "317010845023",
+    "project_id": "lettero-74396",
+    "storage_bucket": "lettero-74396.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:745037027981:android:1dcedeb94fc70b7b6660c4",
+        "mobilesdk_app_id": "1:317010845023:android:4a2c436c8fd054890beaea",
         "android_client_info": {
           "package_name": "com.nexters.lettero"
         }
       },
       "oauth_client": [
         {
-          "client_id": "745037027981-ahbdn98pf8cj7uq3d56jb8no4pi3hqdi.apps.googleusercontent.com",
+          "client_id": "317010845023-ovuvrigdmpmqv6dirpj55n6447490aoh.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA55I1BDL6Hal579miTcnKifldldpGG3IE"
+          "current_key": "AIzaSyArAIfl4mJ_Obsv2aTFFGFiqwOdSx4P-6E"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "745037027981-ahbdn98pf8cj7uq3d56jb8no4pi3hqdi.apps.googleusercontent.com",
+              "client_id": "317010845023-ovuvrigdmpmqv6dirpj55n6447490aoh.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "745037027981-vnu1ksgqivuhlq639sgjesmr8q7p4u9p.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "org.reactjs.native.example.eyeLong"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:745037027981:android:31eab41d71510c6d6660c4",
-        "android_client_info": {
-          "package_name": "com.teamnexters.eyelong"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "745037027981-ahbdn98pf8cj7uq3d56jb8no4pi3hqdi.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyA55I1BDL6Hal579miTcnKifldldpGG3IE"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "745037027981-ahbdn98pf8cj7uq3d56jb8no4pi3hqdi.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "745037027981-vnu1ksgqivuhlq639sgjesmr8q7p4u9p.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "org.reactjs.native.example.eyeLong"
-              }
             }
           ]
         }

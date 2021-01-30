@@ -6,11 +6,16 @@ import android.util.Log
 import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
+import com.nexters.lettero.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
@@ -26,7 +31,10 @@ class MainActivity : AppCompatActivity() {
             val token = task.result
             token?.let { // Log and toast
                 Log.d(MainActivity::class.qualifiedName, token)
-                Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
+
+                binding.apply {
+                    textToken.text = token
+                }
             }
         })
     }
