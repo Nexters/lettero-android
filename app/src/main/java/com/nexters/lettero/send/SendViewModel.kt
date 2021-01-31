@@ -31,6 +31,8 @@ class SendViewModel(val sendActivity: SendActivity) {
     fun setSenderName(isPrivate: Boolean) {
         if(isPrivate) {
             senderName.set(sendActivity.getString(R.string.sender_name_hide))
+        } else {
+            senderName.set("홍길동") //사용자 정보 연결 후 변경 예정
         }
     }
 }
