@@ -7,4 +7,9 @@
     <string name="send_sender">보내는사람</string>
     <string name="send_msg_hint">메세지를 입력해주세요.</string>
     <string name="send_msg_btn">전송</string>
+    <string name="send_dialog_info">익명으로 문자를 보낼 수 있습니다.</string>
+    <string name="send_dialog_public">발신번호 공개</string>
+    <string name="send_dialog_private">발신번호 비공개</string>
+    <string name="send_msg_cnt_format">%d / %d</string>
+    <string name="sender_name_hide">발신번호표시제한</string>
 </resources>

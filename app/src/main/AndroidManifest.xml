@@ -11,6 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Lettero">
+        <activity android:name=".send.SendActivity"
+            android:windowSoftInputMode="adjustResize">
+        </activity>
+        <activity android:name=".send.dialog.PrivateSettingDialog" android:theme="@style/LetteroDialogStyle">
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

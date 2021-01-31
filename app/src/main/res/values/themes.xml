@@ -32,4 +32,11 @@
     <style name="LetteroEditTextStyle" parent="android:Widget.EditText">
         <item name="android:fontFamily">@font/neodgm</item>
     </style>
+
+    <style name="LetteroDialogStyle" parent="@android:style/Theme.Holo.Dialog.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/neodgm</item>
+    </style>
 </resources>
