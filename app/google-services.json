@@ -1,18 +1,27 @@
 {
   "project_info": {
     "project_number": "317010845023",
+    "firebase_url": "https://lettero-74396-default-rtdb.firebaseio.com",
     "project_id": "lettero-74396",
     "storage_bucket": "lettero-74396.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:317010845023:android:4a2c436c8fd054890beaea",
+        "mobilesdk_app_id": "1:317010845023:android:3260a95faeb86a940beaea",
         "android_client_info": {
           "package_name": "com.nexters.lettero"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "317010845023-c8p7k51n86em406qlg6ocp2p43ljj3bl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nexters.lettero",
+            "certificate_hash": "f569a5cdf157fd9ce21dea2a24d3f13db0b9c600"
+          }
+        },
         {
           "client_id": "317010845023-ovuvrigdmpmqv6dirpj55n6447490aoh.apps.googleusercontent.com",
           "client_type": 3
