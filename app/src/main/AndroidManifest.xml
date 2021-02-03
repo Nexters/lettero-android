@@ -2,20 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nexters.lettero">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Lettero">
-        <activity android:name=".send.SendActivity"
-            android:windowSoftInputMode="adjustResize">
-        </activity>
-        <activity android:name=".send.dialog.PrivateSettingDialog" android:theme="@style/LetteroDialogStyle">
-        </activity>
+        android:theme="@style/Theme.App">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
