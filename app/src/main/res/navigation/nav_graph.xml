@@ -45,7 +45,11 @@
         android:id="@+id/myPageFragment"
         android:name="com.nexters.lettero.presentation.mypage.fragment.MyPageFragment"
         android:label="fragment_my_page"
-        tools:layout="@layout/fragment_my_page" />
+        tools:layout="@layout/fragment_my_page" >
+        <action
+            android:id="@+id/action_myPageFragment_to_seetingFragment"
+            app:destination="@id/seetingFragment" />
+    </fragment>
     <fragment
         android:id="@+id/sendMessageFragment2"
         android:name="com.nexters.lettero.presentation.message.fragment.SendMessageFragment"
@@ -56,4 +60,9 @@
         android:name="com.nexters.lettero.presentation.message.fragment.ReadMessageFragment"
         android:label="fragment_read_message"
         tools:layout="@layout/fragment_read_message" />
+    <fragment
+        android:id="@+id/seetingFragment"
+        android:name="com.nexters.lettero.presentation.mypage.fragment.SettingFragment"
+        android:label="fragment_read_message"
+        tools:layout="@layout/fragment_app_setting" />
 </navigation>
