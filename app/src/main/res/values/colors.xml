@@ -14,4 +14,11 @@
 
     <!-- text -->
     <color name="text_black">#111111</color>
+    <color name="text_input">#F0F0F0</color>
+
+    <!-- key color -->
+    <color name="key_color_solid">#71B4BB</color>
+
+    <!-- btn -->
+    <color name="btn_color">#C0C0C0</color>
 </resources>
