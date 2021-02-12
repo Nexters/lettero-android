@@ -1,6 +1,7 @@
 package com.nexters.lettero.presentation.login.viewmodel
 
 import android.os.CountDownTimer
+import android.view.View
 import androidx.databinding.ObservableField
 import androidx.navigation.NavController
 import com.nexters.lettero.R
@@ -34,7 +35,7 @@ class PhoneAuthViewModel : ViewModel {
     }
 
     // TODO : 휴대폰 번호 인증 요청
-    fun requestPhoneNumberAuth() {
+    fun requestPhoneNumberAuth(view: View) {
         phoneNumber.get()?.let {
             if (it.isEmpty()) return@let
             countDownTimer.start()
@@ -42,11 +43,15 @@ class PhoneAuthViewModel : ViewModel {
     }
 
     // TODO : 휴대폰 인증 완료
-    fun confirmRtnNumber() {
+    fun confirmRtnNumber(view: View) {
         rtnNumber.get()?.let {
             if (it.isEmpty()) return@let
 
             navController.navigate(R.id.action_phoneAuthFragment_to_mainFragment)
         }
+    }
+
+    fun backLogin(view: View) {
+        navController.navigate(R.id.action_phoneAuthFragment_to_loginFragment)
     }
 }

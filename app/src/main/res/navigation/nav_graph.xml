@@ -67,5 +67,8 @@
         <action
             android:id="@+id/action_phoneAuthFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_phoneAuthFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 </navigation>
