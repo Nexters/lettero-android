@@ -5,6 +5,10 @@
 
     <data>
         <variable
+            name="view"
+            type="com.nexters.lettero.presentation.login.fragment.PhoneAuthFragment" />
+
+        <variable
             name="viewmodel"
             type="com.nexters.lettero.presentation.login.viewmodel.PhoneAuthViewModel" />
 
@@ -31,7 +35,7 @@
             android:background="@drawable/back_button"
             android:layout_marginTop="11dp"
             android:layout_marginStart="22dp"
-            android:onClick="@{viewmodel::backLogin}"
+            android:onClick="@{view::backLogin}"
             app:layout_constraintTop_toTopOf="@id/phone_auth_background"
             app:layout_constraintStart_toStartOf="parent" />
 
