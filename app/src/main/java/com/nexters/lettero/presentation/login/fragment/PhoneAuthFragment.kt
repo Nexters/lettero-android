@@ -7,6 +7,7 @@ import android.telephony.PhoneNumberFormattingTextWatcher
 import android.view.View
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.credentials.Credential
 import com.google.android.gms.auth.api.credentials.Credentials
@@ -23,11 +24,13 @@ class PhoneAuthFragment : BaseFragment<FragmentPhoneAuthBinding, PhoneAuthViewMo
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.view = this
         binding.viewmodel = viewModel as PhoneAuthViewModel
         binding.phoneAuthNumber.addTextChangedListener(PhoneNumberFormattingTextWatcher())
-        binding.viewmodel?.navController = findNavController()
 
         requestPhoneNumber()
+        moveToMainFragment()
     }
 
     //사용자 기기 전화번호 추출
@@ -36,14 +39,21 @@ class PhoneAuthFragment : BaseFragment<FragmentPhoneAuthBinding, PhoneAuthViewMo
             registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) {
                 if (it.resultCode != Activity.RESULT_OK) return@registerForActivityResult
 
-                val credential: Credential? = it.data?.getParcelableExtra(Credential.EXTRA_KEY)
-                val phoneNumber = credential?.id?.replace("+82", "0")
-
-                (viewModel as PhoneAuthViewModel).phoneNumber.set(phoneNumber)
+                (binding.viewmodel as PhoneAuthViewModel).setPhoneNumber(it.data)
             }
 
         val hintReq = HintRequest.Builder().setPhoneNumberIdentifierSupported(true).build()
         val intent = Credentials.getClient(context as Context).getHintPickerIntent(hintReq)
         reqPhoneNumber.launch(IntentSenderRequest.Builder(intent.intentSender).build())
+    }
+
+    fun moveToMainFragment() {
+        (viewModel as PhoneAuthViewModel).resultAuthOk.observe(viewLifecycleOwner, Observer {
+            findNavController().navigate(R.id.action_phoneAuthFragment_to_mainFragment)
+        })
+    }
+
+    fun backLogin(view: View) {
+        findNavController().popBackStack()
     }
 }
