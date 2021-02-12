@@ -7,6 +7,9 @@
 
     <data>
         <variable
+            name="view"
+            type="com.nexters.lettero.presentation.mypage.fragment.MyPageFragment" />
+        <variable
             name="vm"
             type="com.nexters.lettero.presentation.mypage.viewmodel.MyPageViewModel" />
     </data>
@@ -25,7 +28,7 @@
             android:textSize="18sp"
             android:gravity="center"
             android:textAlignment="center"
-            android:background="@drawable/page_title"
+            android:background="@drawable/title_top"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -125,7 +128,7 @@
             app:layout_constraintTop_toBottomOf="@id/edit_profile_btn"/>
 
         <Button
-            android:id="@+id/term_service_btn"
+            android:id="@+id/setting_term"
             android:layout_width="match_parent"
             android:layout_height="61dp"
             android:layout_marginStart="20dp"
@@ -148,10 +151,10 @@
             android:background="@color/bg_linear_light_gray"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            app:layout_constraintTop_toBottomOf="@id/term_service_btn"/>
+            app:layout_constraintTop_toBottomOf="@id/setting_term"/>
 
         <Button
-            android:id="@+id/privacy_policy_btn"
+            android:id="@+id/setting_privacy"
             android:layout_width="match_parent"
             android:layout_height="61dp"
             android:layout_marginStart="20dp"
@@ -164,7 +167,8 @@
             android:paddingEnd="28dp"
             android:paddingStart="24dp"
             android:background="@android:color/transparent"
-            app:layout_constraintTop_toBottomOf="@id/term_service_btn"
+            android:onClick="@{view::moveToAppSetting}"
+            app:layout_constraintTop_toBottomOf="@id/setting_term"
             app:layout_constraintStart_toStartOf="parent"/>
 
         <View
@@ -173,7 +177,7 @@
             android:background="@color/bg_linear_light_gray"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            app:layout_constraintTop_toBottomOf="@id/privacy_policy_btn"/>
+            app:layout_constraintTop_toBottomOf="@id/setting_privacy"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

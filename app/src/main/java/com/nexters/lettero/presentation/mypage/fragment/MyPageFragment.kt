@@ -1,10 +1,8 @@
 package com.nexters.lettero.presentation.mypage.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.nexters.lettero.R
 import com.nexters.lettero.databinding.FragmentMyPageBinding
 import com.nexters.lettero.presentation.base.BaseFragment
@@ -15,14 +13,14 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding, MyPageViewModel>() {
     override val layoutRes: Int = R.layout.fragment_my_page
     override var viewModel: ViewModel = MyPageViewModel()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val binding = DataBindingUtil.inflate<FragmentMyPageBinding>(layoutInflater, layoutRes, container, false)
-        binding.vm = viewModel as MyPageViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        return binding.root
+        binding.view = this
+        binding.vm = viewModel as MyPageViewModel
+    }
+
+    fun moveToAppSetting(view: View) {
+        findNavController().navigate(R.id.action_myPageFragment_to_settingFragment)
     }
 }

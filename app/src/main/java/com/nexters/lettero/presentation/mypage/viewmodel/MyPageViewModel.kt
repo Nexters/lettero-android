@@ -1,8 +1,6 @@
 package com.nexters.lettero.presentation.mypage.viewmodel
 
-import androidx.compose.ui.res.stringResource
 import androidx.databinding.ObservableField
-import com.nexters.lettero.R
 import com.nexters.lettero.presentation.base.ViewModel
 
 class MyPageViewModel : ViewModel {
@@ -12,7 +10,7 @@ class MyPageViewModel : ViewModel {
 
     init {
         //TODO : 사용자 정보 연동 후 변경 예정
-        name.set(stringResource(R.string.app_name))
+        name.set("aaa")
         phoneNumber.set("010-0000-0000")
     }
 }
