@@ -61,11 +61,11 @@
         tools:layout="@layout/fragment_read_message" />
     <fragment
         android:id="@+id/phoneAuthFragment"
-        android:name="com.nexters.lettero.presentation.login.fragment.PhonAuthFragment"
+        android:name="com.nexters.lettero.presentation.login.fragment.PhoneAuthFragment"
         android:label="fragment_phone_auth"
         tools:layout="@layout/fragment_phone_auth" >
         <action
-            android:id="@+id/action_phoneAuthFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_phoneAuthFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
 </navigation>

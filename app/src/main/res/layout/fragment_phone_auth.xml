@@ -5,7 +5,7 @@
 
     <data>
         <variable
-            name="vm"
+            name="viewmodel"
             type="com.nexters.lettero.presentation.login.viewmodel.PhoneAuthViewModel" />
 
     </data>
@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:padding="8dp"
         android:background="@color/bg"
-        tools:context=".presentation.login.fragment.PhonAuthFragment">
+        tools:context=".presentation.login.fragment.PhoneAuthFragment">
 
         <View
             android:id="@+id/phone_auth_background"
@@ -75,13 +75,14 @@
             app:layout_constraintStart_toStartOf="@id/phone_auth_register_background"
             app:layout_constraintEnd_toEndOf="@id/phone_auth_register_background"
             app:layout_constraintBottom_toTopOf="@id/guide_phone_auth_back1"/>
-        
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/guide_phone_auth_back1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:paddingTop="18dp"
             android:background="@drawable/border_1dp"
             app:layout_constraintStart_toStartOf="@id/phone_auth_register_background"
             app:layout_constraintTop_toBottomOf="@id/phone_auth_info"
@@ -95,7 +96,6 @@
                 android:text="@string/phone_auth_req_info"
                 android:textSize="14sp"
                 android:textColor="@color/bg_line_color"
-                android:layout_marginTop="18dp"
                 android:layout_marginStart="14dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -109,14 +109,16 @@
                 android:layout_marginEnd="12dp"
                 android:background="@drawable/radius_22dp"
                 android:backgroundTint="@color/text_input"
-                android:inputType="phone"
                 android:gravity="center"
+                android:inputType="phone"
+                android:maxLength="13"
                 android:padding="5dp"
-                android:text="@{vm.phoneNumber}"
+                android:text="@={viewmodel.phoneNumber}"
+                app:layout_constraintBottom_toTopOf="@id/phone_auth_req_btn"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/phone_auth_info1"
-                app:layout_constraintBottom_toTopOf="@id/phone_auth_req_btn"/>
+                app:layout_constraintTop_toBottomOf="@id/phone_auth_info1" />
 
             <Button
                 android:id="@+id/phone_auth_req_btn"
@@ -130,7 +132,7 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
                 android:layout_marginBottom="30dp"
-                android:onClick="@{() -> vm.requestPhoneNumberAuth()}"
+                android:onClick="@{() -> viewmodel.requestPhoneNumberAuth()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/phone_auth_number"
@@ -167,7 +169,7 @@
             android:id="@+id/phone_auth_timer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{vm.authTimer}"
+            android:text="@{viewmodel.authTimer}"
             android:textColor="@android:color/holo_red_dark"
             android:textSize="14sp"
             android:layout_marginTop="18dp"
@@ -189,7 +191,7 @@
             android:backgroundTint="@color/text_input"
             android:gravity="center"
             android:inputType="numberDecimal"
-            android:text="@{vm.confrimNumber}"
+            android:text="@={viewmodel.rtnNumber}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/phone_auth_timer"
@@ -210,7 +212,7 @@
         app:layout_constraintEnd_toEndOf="@id/phone_auth_register_background"
         app:layout_constraintBottom_toBottomOf="@id/phone_auth_register_background"/>
 
-        
+
     <Button
         android:id="@+id/phone_auth_confirm_btn"
         android:layout_width="wrap_content"
@@ -220,7 +222,7 @@
         android:text="@string/confrim"
         android:textSize="20sp"
         android:background="@drawable/confirm_btn"
-        android:onClick="@{() -> vm.confirmPhoneNumber()}"
+        android:onClick="@{() -> viewmodel.confirmRtnNumber()}"
         app:layout_constraintTop_toTopOf="@id/phone_auth_confirm"
         app:layout_constraintEnd_toEndOf="@id/phone_auth_confirm"/>
 
