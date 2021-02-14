@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="view"
+            type="com.nexters.lettero.presentation.mypage.fragment.SettingFragment" />
+        <variable
+            name="vm"
+            type="com.nexters.lettero.presentation.mypage.viewmodel.SettingViewModel" />
+    </data>
+
+    <!-- TODO : onclick url 변경 필요 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg"
+        android:padding="8dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/radius_5dp"
+            android:backgroundTint="@color/key_color_solid" />
+
+        <ImageButton
+            android:id="@+id/back_app_setting"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="18dp"
+            android:src="@drawable/back_button"
+            android:onClick="@{view::moveBack}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/top_radius_8dp"
+            android:gravity="center"
+            android:text="@string/app_setting"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@id/back_app_setting"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/guide_app_setting_back"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/radius_8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/back_app_setting" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/border_radius_8dp"
+            app:layout_constraintEnd_toEndOf="@id/guide_app_setting_back"
+            app:layout_constraintStart_toStartOf="@id/guide_app_setting_back"
+            app:layout_constraintTop_toTopOf="@id/guide_app_setting_back">
+
+            <TextView
+                android:id="@+id/setting_alarm"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:paddingStart="21dp"
+                android:paddingTop="21dp"
+                android:text="@string/receive_noti"
+                android:textAlignment="textStart"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Switch
+                android:id="@+id/noti_switch"
+                android:layout_width="48dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="15dp"
+                android:checked="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_line_color"
+                app:layout_constraintTop_toBottomOf="@id/setting_alarm" />
+
+            <Button
+                android:id="@+id/setting_term"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:background="@android:color/transparent"
+                android:drawableEnd="@drawable/ic_right"
+                android:paddingStart="21dp"
+                android:paddingEnd="23dp"
+                android:text="@string/terms_of_service"
+                android:textAlignment="viewStart"
+                android:textSize="20sp"
+                android:onClick="@{()-> view.moveToWeb(`https://www.google.com`)}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/setting_alarm" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_line_color"
+                app:layout_constraintTop_toBottomOf="@id/setting_term" />
+
+            <Button
+                android:id="@+id/setting_privacy"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:background="@android:color/transparent"
+                android:drawableEnd="@drawable/ic_right"
+                android:paddingStart="21dp"
+                android:paddingEnd="23dp"
+                android:text="@string/privacy_policy"
+                android:textAlignment="viewStart"
+                android:textSize="20sp"
+                android:onClick="@{()-> view.moveToWeb(`https://www.google.com`)}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/setting_term" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_line_color"
+                app:layout_constraintTop_toBottomOf="@id/setting_privacy" />
+
+            <Button
+                android:id="@+id/setting_ask"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:background="@android:color/transparent"
+                android:drawableEnd="@drawable/ic_right"
+                android:paddingStart="21dp"
+                android:paddingEnd="23dp"
+                android:text="@string/ask"
+                android:textAlignment="viewStart"
+                android:textSize="20sp"
+                android:onClick="@{()-> view.moveToWeb(`https://www.google.com`)}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/setting_privacy" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_line_color"
+                app:layout_constraintTop_toBottomOf="@id/setting_ask" />
+
+            <Button
+                android:id="@+id/setting_logout"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:background="@android:color/transparent"
+                android:drawableEnd="@drawable/ic_right"
+                android:paddingStart="21dp"
+                android:paddingEnd="23dp"
+                android:text="@string/logout"
+                android:textAlignment="viewStart"
+                android:textColor="@color/text_subtitle"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/setting_ask" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_line_color"
+                app:layout_constraintTop_toBottomOf="@id/setting_logout" />
+
+            <Button
+                android:id="@+id/setting_resignation"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:background="@android:color/transparent"
+                android:drawableEnd="@drawable/ic_right"
+                android:paddingStart="21dp"
+                android:paddingEnd="23dp"
+                android:text="@string/resignation"
+                android:textAlignment="viewStart"
+                android:textColor="@color/text_subtitle"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/setting_logout" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/phoneAuthFragment">
+    app:startDestination="@id/introFragment">
 
     <fragment
         android:id="@+id/mainFragment"
@@ -48,7 +48,11 @@
         android:id="@+id/myPageFragment"
         android:name="com.nexters.lettero.presentation.mypage.fragment.MyPageFragment"
         android:label="fragment_my_page"
-        tools:layout="@layout/fragment_my_page" />
+        tools:layout="@layout/fragment_my_page" >
+        <action
+            android:id="@+id/action_myPageFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+    </fragment>
     <fragment
         android:id="@+id/sendMessageFragment2"
         android:name="com.nexters.lettero.presentation.message.fragment.SendMessageFragment"
@@ -59,6 +63,15 @@
         android:name="com.nexters.lettero.presentation.message.fragment.ReadMessageFragment"
         android:label="fragment_read_message"
         tools:layout="@layout/fragment_read_message" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.nexters.lettero.presentation.mypage.fragment.SettingFragment"
+        android:label="fragment_read_message"
+        tools:layout="@layout/fragment_app_setting" >
+        <action
+            android:id="@+id/action_settingFragment_to_myPageFragment"
+            app:destination="@id/myPageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/phoneAuthFragment"
         android:name="com.nexters.lettero.presentation.login.fragment.PhoneAuthFragment"
@@ -71,4 +84,5 @@
             android:id="@+id/action_phoneAuthFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+
 </navigation>

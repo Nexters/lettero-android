@@ -11,13 +11,16 @@
     <!-- background -->
     <color name="bg">#444444</color>
     <color name="bg_line_color">#777777</color>
+    <color name="bg_linear_light_gray">#C0C0C0</color>
 
     <!-- text -->
     <color name="text_black">#111111</color>
     <color name="text_input">#F0F0F0</color>
+    <color name="text_subtitle">#646464</color>
 
     <!-- key color -->
     <color name="key_color_solid">#71B4BB</color>
+    <color name="key_color_solid2">#B3DCE3</color>
 
     <!-- btn -->
     <color name="btn_color">#C0C0C0</color>
