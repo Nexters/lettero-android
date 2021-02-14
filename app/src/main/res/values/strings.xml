@@ -1,14 +1,16 @@
 <resources>
     <string name="app_name">Lettero</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- send 화면 -->
     <string name="send_title">메세지 작성</string>
-    <string name="send_receiver">받는사람</string>
-    <string name="send_sender">보내는사람</string>
+    <string name="send_receiver">수신자</string>
+    <string name="send_sender">발신자</string>
     <string name="send_msg_hint">메세지를 입력해주세요.</string>
-    <string name="send_msg_btn">전송</string>
+    <string name="send_cnt">%1$d/%2$d</string>
+    <string name="send_compelte">전송이 완료되었습니다.</string>
 
     <!-- 마이 페이지 -->
     <string name="mypage_title">마이페이지</string>
@@ -30,7 +32,7 @@
     <string name="phone_number">전화번호</string>
 
     <string name="complete">완료</string>
-  
+
     <!-- phone auth -->
     <string name="phone_auth_register">회원가입</string>
     <string name="phone_auth">휴대폰 번호 인증</string>
@@ -41,4 +43,3 @@
     <string name="confrim">완료</string>
 
 </resources>
-

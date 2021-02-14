@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/introFragment">
+    app:startDestination="@id/sendMessageFragment2">
 
     <fragment
         android:id="@+id/mainFragment"
@@ -57,7 +57,18 @@
         android:id="@+id/sendMessageFragment2"
         android:name="com.nexters.lettero.presentation.message.fragment.SendMessageFragment"
         android:label="fragment_send_message"
-        tools:layout="@layout/fragment_send_message" />
+        tools:layout="@layout/fragment_send_message" >
+        <action
+            android:id="@+id/action_sendMessageFragment2_to_sendResultDialogFragment"
+            app:destination="@id/sendResultDialogFragment" />
+        <action
+            android:id="@+id/action_sendMessageFragment2_to_userNameDialogFragment"
+            app:destination="@id/userNameDialogFragment" />
+        <argument
+            android:name="isAnonymous"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
     <fragment
         android:id="@+id/readMessageFragment"
         android:name="com.nexters.lettero.presentation.message.fragment.ReadMessageFragment"
@@ -84,5 +95,21 @@
             android:id="@+id/action_phoneAuthFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
-
+    <dialog
+        android:id="@+id/sendResultDialogFragment"
+        android:name="com.nexters.lettero.presentation.message.dialog.SendResultDialogFragment"
+        android:label="SendResultDialogFragment" >
+        <action
+            android:id="@+id/action_sendResultDialogFragment_to_sendMessageFragment2"
+            app:destination="@id/sendMessageFragment2" />
+    </dialog>
+    <dialog
+        android:id="@+id/userNameDialogFragment"
+        android:name="com.nexters.lettero.presentation.message.dialog.UserNameDialogFragment"
+        android:label="fragment_user_name_dialog"
+        tools:layout="@layout/fragment_user_name_dialog" >
+        <action
+            android:id="@+id/action_userNameDialogFragment_to_sendMessageFragment2"
+            app:destination="@id/sendMessageFragment2" />
+    </dialog>
 </navigation>

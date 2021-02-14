@@ -24,4 +24,6 @@
 
     <!-- btn -->
     <color name="btn_color">#C0C0C0</color>
+
+    <color name="positive">#0D33FF</color>
 </resources>
