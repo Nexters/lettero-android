@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">Lettero</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- phone auth -->
+    <string name="phone_auth_register">회원가입</string>
+    <string name="phone_auth">휴대폰 번호 인증</string>
+    <string name="phone_auth_req_info">휴대폰 번호를 입력해 주세요~</string>
+    <string name="phone_auth_req">인증 요청</string>
+    <string name="phone_auth_result_info">인증번호를 입력해 주세요~</string>
+
+    <string name="confrim">완료</string>
 </resources>

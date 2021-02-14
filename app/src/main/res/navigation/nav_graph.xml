@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/introFragment">
+    app:startDestination="@id/phoneAuthFragment">
 
     <fragment
         android:id="@+id/mainFragment"
@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_loginFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_phoneAuthFragment"
+            app:destination="@id/phoneAuthFragment" />
     </fragment>
     <fragment
         android:id="@+id/myPageFragment"
@@ -56,4 +59,16 @@
         android:name="com.nexters.lettero.presentation.message.fragment.ReadMessageFragment"
         android:label="fragment_read_message"
         tools:layout="@layout/fragment_read_message" />
+    <fragment
+        android:id="@+id/phoneAuthFragment"
+        android:name="com.nexters.lettero.presentation.login.fragment.PhoneAuthFragment"
+        android:label="fragment_phone_auth"
+        tools:layout="@layout/fragment_phone_auth" >
+        <action
+            android:id="@+id/action_phoneAuthFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_phoneAuthFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>
