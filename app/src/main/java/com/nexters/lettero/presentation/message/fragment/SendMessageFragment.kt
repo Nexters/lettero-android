@@ -6,6 +6,8 @@ import android.telephony.PhoneNumberFormattingTextWatcher
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.nexters.lettero.R
@@ -32,7 +34,6 @@ class SendMessageFragment : BaseFragment<FragmentSendMessageBinding, SendMessage
         binding.viewmodel = viewModel as? SendMessageViewModel
 
         init()
-        (viewModel as SendMessageViewModel).isAnonymous.value = arguments?.get("isAnonymous") as? Boolean
     }
 
     fun init() {
@@ -42,6 +43,29 @@ class SendMessageFragment : BaseFragment<FragmentSendMessageBinding, SendMessage
         }
 
         (viewModel as SendMessageViewModel).sendResult.observe(viewLifecycleOwner, sendResult)
+        observeDialogResult()
+    }
+
+    fun observeDialogResult() {
+        val navBackStackEntry = findNavController().getBackStackEntry(R.id.sendMessageFragment2)
+
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_RESUME
+                && navBackStackEntry.savedStateHandle.contains("isAnonymous")) {
+                val result = navBackStackEntry.savedStateHandle.get<Boolean>("isAnonymous");
+                if(result as Boolean) {
+                    (viewModel as SendMessageViewModel).isAnonymous.value = result
+                    (viewModel as SendMessageViewModel).senderName.value = getString(R.string.private_name)
+                }
+            }
+        }
+        navBackStackEntry.lifecycle.addObserver(observer)
+
+        viewLifecycleOwner.lifecycle.addObserver(LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_DESTROY) {
+                navBackStackEntry.lifecycle.removeObserver(observer)
+            }
+        })
     }
 
     fun moveToBack(view: View) {

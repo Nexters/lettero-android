@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
-import androidx.navigation.fragment.findNavController
 import com.nexters.lettero.R
 import com.nexters.lettero.databinding.FragmentSendResultDialogBinding
 
@@ -17,7 +16,7 @@ class SendResultDialogFragment : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val binding:FragmentSendResultDialogBinding = DataBindingUtil.inflate(
+        val binding: FragmentSendResultDialogBinding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_send_result_dialog,
             container,
@@ -30,7 +29,7 @@ class SendResultDialogFragment : DialogFragment() {
         return binding.root
     }
 
-    fun closeDialog(view: View){
+    fun closeDialog(view: View) {
         dismiss()
     }
 }
