@@ -53,10 +53,8 @@ class SendMessageFragment : BaseFragment<FragmentSendMessageBinding, SendMessage
             if (event == Lifecycle.Event.ON_RESUME
                 && navBackStackEntry.savedStateHandle.contains("isAnonymous")) {
                 val result = navBackStackEntry.savedStateHandle.get<Boolean>("isAnonymous");
-                if(result as Boolean) {
-                    (viewModel as SendMessageViewModel).isAnonymous.value = result
-                    (viewModel as SendMessageViewModel).senderName.value = getString(R.string.private_name)
-                }
+
+                (viewModel as SendMessageViewModel).isAnonymous.value = result
             }
         }
         navBackStackEntry.lifecycle.addObserver(observer)
