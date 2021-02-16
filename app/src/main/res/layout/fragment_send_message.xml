@@ -1,11 +1,238 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.message.fragment.SendMessageFragment">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <data>
+        <variable
+            name="view"
+            type="com.nexters.lettero.presentation.message.fragment.SendMessageFragment" />
+        <variable
+            name="viewmodel"
+            type="com.nexters.lettero.presentation.message.viewmodel.SendMessageViewModel" />
 
-    </FrameLayout>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        android:background="@color/bg">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/radius_5dp"
+            android:backgroundTint="@color/key_color_solid" />
+
+        <TextView
+            android:id="@+id/send_title"
+            android:layout_width="120dp"
+            android:layout_height="44dp"
+            android:text="@string/send_title"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/top_radius_8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/send_back"/>
+
+        <ImageButton
+            android:id="@+id/send_back"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:src="@drawable/back_button"
+            android:layout_marginTop="18dp"
+            android:layout_marginStart="30dp"
+            android:onClick="@{view::moveToBack}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/radius_8dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="-10dp"
+            app:layout_constraintTop_toBottomOf="@id/send_title"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="2dp"
+                android:background="@color/white"
+                tools:layout_editor_absoluteX="2dp"
+                tools:layout_editor_absoluteY="1dp" />
+
+            <TextView
+                android:id="@+id/receiver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/send_receiver"
+                android:textSize="14sp"
+                android:textColor="@color/bg_line_color"
+                android:layout_marginTop="36dp"
+                android:layout_marginStart="32dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <EditText
+                android:id="@+id/receiver_edittext"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:text="@={viewmodel.receiverNumber}"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:background="@drawable/radius_22dp"
+                android:backgroundTint="@color/text_input"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="14dp"
+                android:padding="10dp"
+                android:inputType="phone"
+                android:maxLength="13"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/receiver"
+                app:layout_constraintEnd_toStartOf="@id/receiver_btn"
+                />
+
+            <ImageView
+                android:id="@+id/receiver_btn"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_right"
+                android:scaleType="center"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="12dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/receiver_edittext"/>
+
+
+            <TextView
+                android:id="@+id/sender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/send_sender"
+                android:textSize="14sp"
+                android:textColor="@color/bg_line_color"
+                android:layout_marginTop="43dp"
+                android:layout_marginStart="32dp"
+                app:layout_constraintTop_toBottomOf="@id/receiver"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/sender_edittext"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:text="@{viewmodel.isAnonymous? @string/private_name : viewmodel.senderName }"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:background="@drawable/radius_22dp"
+                android:backgroundTint="@color/text_input"
+                android:layout_marginTop="13dp"
+                android:layout_marginStart="14dp"
+                android:padding="10dp"
+                android:freezesText="true"
+                app:layout_constraintTop_toBottomOf="@id/receiver_edittext"
+                app:layout_constraintStart_toEndOf="@id/sender"
+                app:layout_constraintEnd_toStartOf="@id/sender_btn"
+                />
+
+            <ImageView
+                android:id="@+id/sender_btn"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="12dp"
+                android:src="@drawable/ic_right"
+                android:scaleType="center"
+                android:onClick="@{view::startUserNameDialog}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/receiver_edittext"
+                app:layout_constraintStart_toEndOf="@id/sender_edittext"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintTop_toBottomOf="@id/sender_edittext"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/border_radius_8dp" />
+
+            <EditText
+                android:id="@+id/send_msg_content"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="@={viewmodel.sendMsg}"
+                android:textSize="20sp"
+                android:hint="@string/send_msg_hint"
+                android:layout_marginTop="11dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="5dp"
+                android:paddingStart="12dp"
+                android:paddingTop="14dp"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:background="@android:color/transparent"
+                android:maxLength="@{viewmodel.TEXT_MAX_LENGTH}"
+                android:maxLines="20"
+                android:scrollbars="vertical"
+                app:layout_constraintTop_toBottomOf="@id/sender_edittext"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/send_msg_cnt"
+                />
+
+            <View
+                android:id="@+id/send_msg_footer"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="21dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/title_bottom"
+                app:layout_constraintStart_toStartOf="@id/send_msg_content"
+                app:layout_constraintTop_toBottomOf="@id/send_msg_cnt"
+                app:layout_constraintEnd_toEndOf="@id/send_msg_content"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <ImageButton
+                android:id="@+id/send_msg_btn"
+                android:layout_width="88dp"
+                android:layout_height="48dp"
+                android:gravity="center"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/ic_send"
+                android:background="@drawable/confirm_btn"
+                android:onClick="@{viewmodel::sendMessage}"
+                app:layout_constraintEnd_toEndOf="@id/send_msg_footer"
+                app:layout_constraintBottom_toBottomOf="@id/send_msg_footer" />
+
+            <TextView
+                android:id="@+id/send_msg_cnt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{String.format(@string/send_cnt, viewmodel.cntMsg, viewmodel.TEXT_MAX_LENGTH)}"
+                android:textSize="18sp"
+                android:textColor="@color/bg_line_color"
+                android:layout_marginStart="32dp"
+                android:layout_marginBottom="22dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/send_msg_btn"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

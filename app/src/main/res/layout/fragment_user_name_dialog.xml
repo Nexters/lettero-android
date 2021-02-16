@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.nexters.lettero.presentation.message.viewmodel.UserNameDialogViewModel" />
+        <variable
+            name="view"
+            type="com.nexters.lettero.presentation.message.dialog.UserNameDialogFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:context=".presentation.message.dialog.UserNameDialogFragment">
+
+        <RadioGroup
+            android:id="@+id/user_name_group"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RadioButton
+                android:id="@+id/user_name_public"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginLeft="48dp"
+                android:checked="@{!viewmodel.isPrivateName}"
+                android:onClick="@{() -> viewmodel.setPrivate(false)}"
+                android:background="@drawable/lettero_checkbox"
+                android:button="@android:color/transparent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RadioButton
+                android:id="@+id/user_name_private"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="27dp"
+                android:layout_marginLeft="48dp"
+                android:checked="@{viewmodel.isPrivateName}"
+                android:onClick="@{() -> viewmodel.setPrivate(true)}"
+                android:background="@drawable/lettero_checkbox"
+                android:button="@android:color/transparent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/user_name_public" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="17dp"
+            android:text="@string/send_name_public"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@id/user_name_group"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="17dp"
+            android:layout_marginBottom="3dp"
+            android:text="@string/send_name_private"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@id/user_name_group"
+            app:layout_constraintBottom_toBottomOf="@id/user_name_group" />
+
+
+        <View
+            android:id="@+id/guide_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="26dp"
+            android:background="@color/bg_line_color"
+            app:layout_constraintTop_toBottomOf="@id/user_name_group"/>
+
+        <Button
+            android:id="@+id/user_name_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            android:background="@android:color/transparent"
+            android:onClick="@{view::cancel}"
+            app:layout_constraintEnd_toStartOf="@id/guide_user_name_btn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guide_user_name" />
+
+        <View
+            android:id="@+id/guide_user_name_btn"
+            android:layout_width="1dp"
+            android:layout_height="51dp"
+            android:background="@color/bg_line_color"
+            app:layout_constraintTop_toBottomOf="@id/guide_user_name"
+            app:layout_constraintStart_toEndOf="@id/user_name_cancel"
+            app:layout_constraintEnd_toStartOf="@id/user_name_complete"/>
+
+
+        <Button
+            android:id="@+id/user_name_complete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/complete"
+            android:textColor="@color/positive"
+            android:background="@android:color/transparent"
+            android:onClick="@{view::complete}"
+            app:layout_constraintStart_toEndOf="@id/guide_user_name_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guide_user_name" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
