@@ -8,25 +8,18 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import com.nexters.lettero.R
 import com.nexters.lettero.databinding.FragmentSendResultDialogBinding
+import com.nexters.lettero.presentation.base.BaseFragmentDialog
+import com.nexters.lettero.presentation.base.ViewModel
+import com.nexters.lettero.presentation.message.viewmodel.ReadMessageViewModel
+import com.nexters.lettero.presentation.message.viewmodel.SendResultViewModel
 
-class SendResultDialogFragment : DialogFragment() {
+class SendResultDialogFragment : BaseFragmentDialog<FragmentSendResultDialogBinding, SendResultViewModel>() {
+    override val layoutRes: Int = R.layout.fragment_send_result_dialog
+    override var viewModel: ViewModel = SendResultViewModel()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        val binding: FragmentSendResultDialogBinding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_send_result_dialog,
-            container,
-            false
-        )
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.view = this
-
-        dialog?.window?.setBackgroundDrawable(resources.getDrawable(R.drawable.radius_11dp, null))
-
-        return binding.root
     }
 
     fun closeDialog(view: View) {
