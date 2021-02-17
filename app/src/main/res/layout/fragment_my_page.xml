@@ -62,7 +62,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
             app:layout_constraintTop_toTopOf="@id/guide_profile_back"
-            app:layout_constraintStart_toStartOf="@id/guide_profile_back"/>
+            app:layout_constraintStart_toStartOf="@id/guide_profile_back"
+            app:imgUrl="@{vm.thumbNailUrl}"/>
 
         <TextView
             android:id="@+id/guide_profile_txt"
