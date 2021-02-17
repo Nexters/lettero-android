@@ -15,7 +15,7 @@ import com.nexters.lettero.presentation.mypage.viewmodel.SettingViewModel
 
 class SettingFragment : BaseFragment<FragmentAppSettingBinding, SettingViewModel>() {
     override val layoutRes: Int = R.layout.fragment_app_setting
-    override var viewModel: ViewModel = SettingViewModel()
+    override var viewModel: SettingViewModel = SettingViewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
