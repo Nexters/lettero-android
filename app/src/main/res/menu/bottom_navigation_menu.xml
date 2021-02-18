@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_in_box"
+        android:icon="@drawable/selector_menu_in_box"
+        android:title="" />
+
+    <item
+        android:id="@+id/menu_send"
+        android:icon="@drawable/selector_menu_send"
+        android:title="" />
+
+    <item
+        android:id="@+id/menu_my_page"
+        android:icon="@drawable/selector_menu_my_page"
+        android:title="" />
+</menu>

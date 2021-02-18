@@ -13,6 +13,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- in box -->
+    <string name="in_box">문자함</string>
+
     <!-- send 화면 -->
     <string name="send_title">메세지 작성</string>
     <string name="send_receiver">수신자</string>
