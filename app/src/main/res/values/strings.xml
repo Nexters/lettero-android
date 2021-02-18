@@ -1,5 +1,14 @@
 <resources>
+    <!-- app -->
     <string name="app_name">Lettero</string>
+
+    <!-- kakao -->
+    <string name="kakao_native_app_key">9836b85584b8fc691b258ebe20a9031a</string>
+    <string name="kakao_login">카카오로 로그인</string>
+    <string name="kakao_login_failure">카카오 계정을 확인 해주세요</string>
+
+    <!-- terms of service -->
+    <string name="terms_of_service_guide">가입을 진행할 경우, 다음 정책에 동의한 것으로 간주됩니다. 서비스 약관, 개인정보 취급 방침</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -46,5 +55,4 @@
     <string name="confrim">완료</string>
 
     <string name="cancel">취소</string>
-
 </resources>

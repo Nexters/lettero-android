@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -40,7 +42,8 @@ android {
 }
 
 dependencies {
-    def nav_version = "2.3.2"
+    def kakao_version = '2.3.0'
+    def nav_version = '2.3.2'
     def lifecycleVersion = '2.2.0'
     def retrofitVersion = '2.9.0'
 
@@ -61,7 +64,14 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
     implementation 'com.google.android.gms:play-services-auth-api-phone:17.4.0'
 
-    // navigation component
+    // kakao
+    implementation "com.kakao.sdk:v2-user-rx:$kakao_version"
+
+    // dagger hilt
+    implementation "com.google.dagger:hilt-android:2.28-alpha"
+    kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
+
+    // navigation component (SAA)
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"

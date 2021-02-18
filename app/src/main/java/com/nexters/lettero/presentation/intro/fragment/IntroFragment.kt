@@ -1,36 +1,60 @@
 package com.nexters.lettero.presentation.intro.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.messaging.FirebaseMessaging
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.observe
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import com.nexters.lettero.R
 import com.nexters.lettero.databinding.FragmentIntroBinding
 import com.nexters.lettero.presentation.base.BaseFragment
-import com.nexters.lettero.presentation.base.ViewModel
 import com.nexters.lettero.presentation.intro.viewmodel.IntroViewModel
-import com.nexters.lettero.presentation.main.viewmodel.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class IntroFragment : BaseFragment<FragmentIntroBinding, IntroViewModel>() {
     override val layoutRes: Int = R.layout.fragment_intro
-    override var viewModel: ViewModel = MainViewModel()
+
+    @Inject
+    override lateinit var viewModel: IntroViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        register(viewModel)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-            if (!task.isSuccessful) {
-                Log.w("TEST", "Fetching FCM registration token failed", task.exception)
-                return@OnCompleteListener
+
+        viewModel.tokenResult.observe(viewLifecycleOwner) { result ->
+            viewLifecycleOwner.lifecycleScope.launch {
+                delay(1000)
+
+                if (result) {
+                    navigateToMainFragment(view.findNavController())
+                } else {
+                    navigateToLoginFragment(view.findNavController())
+                }
             }
+        }
+    }
 
-            // Get new FCM registration token
-            val token = task.result
+    override fun onDestroy() {
+        super.onDestroy()
+        unregister(viewModel)
+    }
 
-            // Log and toast
+    private fun navigateToLoginFragment(navController: NavController) {
+        val action = IntroFragmentDirections.actionIntroFragmentToLoginFragment()
+        navController.navigate(action)
+    }
 
-            Log.d("TEST", "result : " + token)
-        })
+    private fun navigateToMainFragment(navController: NavController) {
+        val action = IntroFragmentDirections.actionIntroFragmentToMainFragment()
+        navController.navigate(action)
     }
 }

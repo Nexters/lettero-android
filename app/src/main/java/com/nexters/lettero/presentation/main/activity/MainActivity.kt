@@ -4,9 +4,10 @@ import com.nexters.lettero.R
 import com.nexters.lettero.databinding.ActivityMainBinding
 import com.nexters.lettero.presentation.base.BaseActivity
 import com.nexters.lettero.presentation.base.ViewModel
-import com.nexters.lettero.presentation.main.viewmodel.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
+@AndroidEntryPoint
+class MainActivity : BaseActivity<ActivityMainBinding, ViewModel>() {
     override val layoutRes: Int = R.layout.activity_main
-    override var viewModel: ViewModel = MainViewModel()
+    override var viewModel: ViewModel = object : ViewModel {}
 }

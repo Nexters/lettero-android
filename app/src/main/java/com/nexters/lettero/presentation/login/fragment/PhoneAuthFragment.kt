@@ -20,7 +20,7 @@ import com.nexters.lettero.presentation.login.viewmodel.PhoneAuthViewModel
 
 class PhoneAuthFragment : BaseFragment<FragmentPhoneAuthBinding, PhoneAuthViewModel>() {
     override val layoutRes: Int = R.layout.fragment_phone_auth
-    override var viewModel: ViewModel = PhoneAuthViewModel()
+    override var viewModel: PhoneAuthViewModel = PhoneAuthViewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
