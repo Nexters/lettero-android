@@ -1,6 +1,7 @@
 package com.nexters.lettero.presentation.di
 
 import com.nexters.lettero.domain.interactor.KakaoLoginUseCase
+import com.nexters.lettero.domain.interactor.KakaoTokenUseCase
 import com.nexters.lettero.presentation.intro.viewmodel.IntroViewModel
 import com.nexters.lettero.presentation.login.viewmodel.LoginViewModel
 import com.nexters.lettero.presentation.main.viewmodel.MainViewModel
@@ -17,7 +18,8 @@ object ViewModelModule {
     fun provideMainViewModel() = MainViewModel()
 
     @Provides
-    fun provideIntroViewModel() = IntroViewModel()
+    fun provideIntroViewModel(kakaoTokenUseCase: KakaoTokenUseCase) =
+        IntroViewModel(kakaoTokenUseCase)
 
     @Provides
     fun provideLoginViewModel(kakaoLoginUseCase: KakaoLoginUseCase) =
