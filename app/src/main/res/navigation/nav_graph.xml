@@ -74,8 +74,17 @@
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.nexters.lettero.presentation.mypage.fragment.SettingFragment"
+
         android:label="fragment_read_Message"
-        tools:layout="@layout/fragment_app_setting" />
+        tools:layout="@layout/fragment_app_setting" >
+        <action
+            android:id="@+id/action_settingFragment_to_myPageFragment"
+            app:destination="@id/myPageFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/phoneAuthFragment"
         android:name="com.nexters.lettero.presentation.login.fragment.PhoneAuthFragment"
