@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/phoneAuthFragment">
+    app:startDestination="@id/introFragment">
 
     <fragment
         android:id="@+id/mainFragment"
@@ -77,9 +77,6 @@
 
         android:label="fragment_read_Message"
         tools:layout="@layout/fragment_app_setting" >
-        <action
-            android:id="@+id/action_settingFragment_to_myPageFragment"
-            app:destination="@id/myPageFragment" />
         <action
             android:id="@+id/action_settingFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
