@@ -9,14 +9,15 @@ import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.google.android.gms.auth.api.credentials.Credential
 import com.google.android.gms.auth.api.credentials.Credentials
 import com.google.android.gms.auth.api.credentials.HintRequest
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
 import com.nexters.lettero.R
 import com.nexters.lettero.databinding.FragmentPhoneAuthBinding
 import com.nexters.lettero.presentation.base.BaseFragment
-import com.nexters.lettero.presentation.base.ViewModel
 import com.nexters.lettero.presentation.login.viewmodel.PhoneAuthViewModel
+import java.util.concurrent.TimeUnit
 
 class PhoneAuthFragment : BaseFragment<FragmentPhoneAuthBinding, PhoneAuthViewModel>() {
     override val layoutRes: Int = R.layout.fragment_phone_auth
@@ -51,6 +52,21 @@ class PhoneAuthFragment : BaseFragment<FragmentPhoneAuthBinding, PhoneAuthViewMo
         (viewModel as PhoneAuthViewModel).resultAuthOk.observe(viewLifecycleOwner, Observer {
             findNavController().navigate(R.id.action_phoneAuthFragment_to_mainFragment)
         })
+    }
+
+    fun requestPhoneAuth(view: View) {
+        viewModel.phoneNumber.value?.let {
+            val option = PhoneAuthOptions.newBuilder()
+                .setPhoneNumber(it)
+                .setTimeout(viewModel.MAX_SECOND, TimeUnit.SECONDS)
+                .setActivity(requireActivity())
+                .setCallbacks(viewModel)
+                .build()
+
+            PhoneAuthProvider.verifyPhoneNumber(option)
+
+            viewModel.doPhoneAuth()
+        }
     }
 
     fun backLogin(view: View) {
