@@ -1,6 +1,8 @@
 package com.nexters.lettero.presentation.base
 
+import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
 import androidx.annotation.LayoutRes
@@ -25,8 +27,13 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : ViewModel> : AppCompatAct
             this.setVariable(BR.viewModel, viewModel)
         }
 
-        window.insetsController?.hide(WindowInsets.Type.statusBars())
-        window.insetsController?.systemBarsBehavior =
-            WindowInsetsController.BEHAVIOR_SHOW_BARS_BY_SWIPE
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.insetsController?.hide(WindowInsets.Type.statusBars())
+            window.insetsController?.systemBarsBehavior =
+                WindowInsetsController.BEHAVIOR_SHOW_BARS_BY_SWIPE
+        } else {
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+            actionBar?.hide()
+        }
     }
 }
