@@ -2,6 +2,7 @@ package com.nexters.lettero.presentation.login.viewmodel
 
 import android.content.Intent
 import android.os.CountDownTimer
+import android.telephony.PhoneNumberUtils
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,8 +11,10 @@ import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
+import com.nexters.lettero.R
 import com.nexters.lettero.domain.repository.UserRepositoryImpl
 import com.nexters.lettero.presentation.base.ViewModel
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -29,6 +32,9 @@ class PhoneAuthViewModel : ViewModel, PhoneAuthProvider.OnVerificationStateChang
     private val userRepository = UserRepositoryImpl()
 
     private var verificationId: String = ""
+
+    private val _message = MutableLiveData<Int?>()
+    val message: LiveData<Int?> = _message
 
     val countDownTimer = object : CountDownTimer(MAX_SECOND * SEC_INTERVAL, SEC_INTERVAL) {
         override fun onFinish() {
@@ -49,15 +55,12 @@ class PhoneAuthViewModel : ViewModel, PhoneAuthProvider.OnVerificationStateChang
     fun setPhoneNumber(intent: Intent?) {
         intent?.let {
             val credential: Credential? = it.getParcelableExtra(Credential.EXTRA_KEY)
-            val number = credential?.id
+            //TODO : 외국 서비스를 할 시 바꿀 필요 있음
+            val number = credential?.id?.replace("+82", "0")
+
 
             phoneNumber.value = number
         }
-    }
-
-    fun doPhoneAuth() {
-        rtnNumber.value = ""
-        countDownTimer.start()
     }
 
     fun confirmRtnNumber(view: View) {
@@ -71,6 +74,7 @@ class PhoneAuthViewModel : ViewModel, PhoneAuthProvider.OnVerificationStateChang
                         _resultAuthOk.value = true
                         savePhoneNumver()
                     } else {
+                        _message.value = R.string.phone_auth_check_code
                         _resultAuthOk.value = false
                     }
                 }
@@ -82,19 +86,38 @@ class PhoneAuthViewModel : ViewModel, PhoneAuthProvider.OnVerificationStateChang
     }
 
     override fun onVerificationFailed(p0: FirebaseException) {
-        android.util.Log.d("phone auth view model : ", p0.message.toString())
+        android.util.Log.d("phone auth view model : ", "error : " + p0.message.toString())
         _resultAuthOk.value = false
+        _message.value = R.string.phone_auth_check_number
     }
 
     override fun onCodeSent(p0: String, p1: PhoneAuthProvider.ForceResendingToken) {
         super.onCodeSent(p0, p1)
-
         android.util.Log.d("phone auth view model : ", "code sent")
+
+        _message.value = R.string.phone_auth_send_code
+        rtnNumber.value = ""
+        countDownTimer.start()
         verificationId = p0
     }
 
     private fun savePhoneNumver() {
         userRepository.savePhoneNumber(phoneNumber.value as String)
+    }
+
+    public fun parsePhoneE164Number(number: String, countryCode: Locale): String? {
+        var e164Num:String? = null
+
+        try {
+            e164Num = PhoneNumberUtils.formatNumberToE164(number, countryCode.country)
+        } catch (e: Exception) {
+            e164Num = null
+        }
+
+        if(e164Num == null)
+            _message.value = R.string.phone_auth_check_number
+
+        return e164Num
     }
 }
 

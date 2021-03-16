@@ -51,6 +51,9 @@
     <string name="phone_auth_req_info">휴대폰 번호를 입력해 주세요~</string>
     <string name="phone_auth_req">인증 요청</string>
     <string name="phone_auth_result_info">인증번호를 입력해 주세요~</string>
+    <string name="phone_auth_check_number">전화번호를 확인해주세요</string>
+    <string name="phone_auth_check_code">인증번호를 확인해주세요</string>
+    <string name="phone_auth_send_code">인증번호를 전송했습니다.</string>
 
     <string name="confrim">완료</string>
 
