@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nest_nav_graph"
-    app:startDestination="@id/sms">
+    app:startDestination="@id/home">
 
     <fragment
-        android:id="@+id/sms"
-        android:name="com.nexters.lettero.presentation.main.fragment.SmsFragment"
-        android:label="fragment_sms"
-        tools:layout="@layout/fragment_sms" />
+        android:id="@+id/home"
+        android:name="com.nexters.lettero.presentation.main.fragment.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/my_page"
         android:name="com.nexters.lettero.presentation.mypage.fragment.MyPageFragment"

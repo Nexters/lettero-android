@@ -5,24 +5,24 @@
     <data>
 
         <variable
-            name="sms"
-            type="com.nexters.lettero.domain.model.SMS" />
+            name="message"
+            type="com.nexters.lettero.domain.model.Message" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:background="@drawable/bg_recycler_item_sms">
+        android:background="@drawable/bg_recycler_item_message">
 
         <ImageView
-            android:id="@+id/img_sms"
+            android:id="@+id/img_message"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_sms" />
+            app:srcCompat="@drawable/ic_message" />
 
         <TextView
             android:id="@+id/text_user"
@@ -30,24 +30,24 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginBottom="6dp"
-            android:text="@{sms.author}"
+            android:text="@{message.author}"
             android:textColor="@color/text_subtitle"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/text_sms"
-            app:layout_constraintStart_toEndOf="@+id/img_sms"
+            app:layout_constraintBottom_toTopOf="@+id/text_message"
+            app:layout_constraintStart_toEndOf="@+id/img_message"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
-            android:id="@+id/text_sms"
+            android:id="@+id/text_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="@{sms.text}"
+            android:text="@{message.text}"
             android:textColor="@color/text_black"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/img_sms"
+            app:layout_constraintStart_toEndOf="@+id/img_message"
             app:layout_constraintTop_toBottomOf="@+id/text_user" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,11 +1,11 @@
-package com.nexters.lettero.presentation.sms.viewmodel
+package com.nexters.lettero.presentation.message.viewmodel
 
 import android.text.Editable
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.nexters.lettero.presentation.base.ViewModel
 
-class SendSmsViewModel : ViewModel {
+class SendMessageViewModel : ViewModel {
     val senderName = MutableLiveData<String>()
     val isAnonymous = MutableLiveData<Boolean>()
 
@@ -27,7 +27,7 @@ class SendSmsViewModel : ViewModel {
         }
     }
 
-    fun sendSms(view: View) {
+    fun sendMessage(view: View) {
         if ((senderName.value as? String).isNullOrEmpty()) return
         if ((receiverNumber.value as? String).isNullOrEmpty()) return
         if ((sendMsg.value as? String).isNullOrEmpty()) return

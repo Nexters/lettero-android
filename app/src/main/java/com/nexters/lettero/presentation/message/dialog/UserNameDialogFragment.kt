@@ -1,4 +1,4 @@
-package com.nexters.lettero.presentation.sms.dialog
+package com.nexters.lettero.presentation.message.dialog
 
 import android.os.Bundle
 import android.view.View
@@ -7,7 +7,7 @@ import com.nexters.lettero.R
 import com.nexters.lettero.databinding.FragmentUserNameDialogBinding
 import com.nexters.lettero.presentation.base.BaseFragmentDialog
 import com.nexters.lettero.presentation.base.ViewModel
-import com.nexters.lettero.presentation.sms.viewmodel.UserNameDialogViewModel
+import com.nexters.lettero.presentation.message.viewmodel.UserNameDialogViewModel
 
 class UserNameDialogFragment :
     BaseFragmentDialog<FragmentUserNameDialogBinding, UserNameDialogViewModel>() {

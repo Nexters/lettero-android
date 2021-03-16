@@ -27,9 +27,9 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
             bottomNavigationView.setupWithNavController(navHost.navController)
             bottomNavigationView.setOnNavigationItemSelectedListener {
                 when (it.itemId) {
-                    R.id.sms -> it.onNavDestinationSelected(navHost.navController)
+                    R.id.home -> it.onNavDestinationSelected(navHost.navController)
                     R.id.my_page -> it.onNavDestinationSelected(navHost.navController)
-                    R.id.send_sms -> {
+                    R.id.send_message -> {
                         navigateToSendMessageFragment(findNavController())
                         false
                     }
@@ -40,7 +40,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
     }
 
     private fun navigateToSendMessageFragment(navController: NavController) {
-        val action = MainFragmentDirections.actionMainFragmentToSendSmsFragment()
+        val action = MainFragmentDirections.actionMainFragmentToSendMessageFragment2()
         navController.navigate(action)
     }
 }

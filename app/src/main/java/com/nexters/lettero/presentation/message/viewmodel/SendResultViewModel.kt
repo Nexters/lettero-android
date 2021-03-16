@@ -1,4 +1,4 @@
-package com.nexters.lettero.presentation.sms.viewmodel
+package com.nexters.lettero.presentation.message.viewmodel
 
 import com.nexters.lettero.presentation.base.ViewModel
 
