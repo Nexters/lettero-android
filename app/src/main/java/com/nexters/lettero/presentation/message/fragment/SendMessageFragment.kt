@@ -48,7 +48,7 @@ class SendMessageFragment : BaseFragment<FragmentSendMessageBinding, SendMessage
     }
 
     fun observeDialogResult() {
-        val navBackStackEntry = findNavController().getBackStackEntry(R.id.sendMessageFragment2)
+        val navBackStackEntry = findNavController().getBackStackEntry(R.id.sendMessageFragment)
 
         val observer = LifecycleEventObserver { _, event ->
             if (event == Lifecycle.Event.ON_RESUME
@@ -76,7 +76,7 @@ class SendMessageFragment : BaseFragment<FragmentSendMessageBinding, SendMessage
         val bundle =
             bundleOf("isAnonymous" to (viewModel as SendMessageViewModel).isAnonymous.value)
         findNavController().navigate(
-            R.id.action_sendMessageFragment2_to_userNameDialogFragment,
+            R.id.action_sendMessageFragment_to_userNameDialogFragment,
             bundle
         )
     }
