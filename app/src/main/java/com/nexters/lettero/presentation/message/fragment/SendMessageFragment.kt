@@ -3,6 +3,7 @@ package com.nexters.lettero.presentation.message.fragment
 import android.os.Bundle
 import android.telephony.PhoneNumberFormattingTextWatcher
 import android.view.View
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Lifecycle
@@ -18,10 +19,12 @@ class SendMessageFragment : BaseFragment<FragmentSendMessageBinding, SendMessage
     override val layoutRes: Int = R.layout.fragment_send_message
     override var viewModel: SendMessageViewModel = SendMessageViewModel()
 
-    private val sendResult = Observer<Boolean> { result ->
-        if (result) {
-            findNavController().navigate(R.id.action_sendMessageFragment_to_sendResultDialogFragment)
-            (viewModel as SendMessageViewModel).initDefaultValue()
+    private val sendResult = Observer<Boolean?> { result ->
+        result?.let {
+            if (result) {
+                findNavController().navigate(R.id.action_sendMessageFragment2_to_sendResultDialogFragment)
+                (viewModel as SendMessageViewModel).initDefaultValue()
+            } else { Toast.makeText(context, getString(R.string.send_msg_err), Toast.LENGTH_LONG).show() }
         }
     }
 

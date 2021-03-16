@@ -1,8 +1,11 @@
 package com.nexters.lettero.presentation.message.viewmodel
 
 import android.text.Editable
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
+import com.nexters.lettero.data.model.SendMessageRequest
+import com.nexters.lettero.domain.repository.MessageRepository
 import com.nexters.lettero.presentation.base.ViewModel
 
 class SendMessageViewModel : ViewModel {
@@ -12,7 +15,9 @@ class SendMessageViewModel : ViewModel {
     val receiverNumber = MutableLiveData<String>()
     val cntMsg = MutableLiveData<Int>()
     val sendMsg = MutableLiveData<String>()
-    val sendResult = MutableLiveData<Boolean>()
+    val sendResult = MutableLiveData<Boolean?>()
+
+    private val msgRepository: MessageRepository = MessageRepository()
 
     val TEXT_MAX_LENGTH = 100
 
@@ -33,8 +38,21 @@ class SendMessageViewModel : ViewModel {
         if ((sendMsg.value as? String).isNullOrEmpty()) return
 
         //TODO : 네트워크 처리
+        val msg = SendMessageRequest(
+            sendMsg.value!!,
+            isAnonymous.value!!,
+            arrayOf(receiverNumber.value!!)
+        )
+        msgRepository.sendMessage(msg).subscribe { result, err ->
+            err.message?.let {
+                Log.d("SendMessageViewModel", it)
+                sendResult.value = false
+            } ?: {
+                sendResult.value = true
+            }()
+        }
 
-        sendResult.value = true
+        sendResult.postValue(null)
     }
 
     fun initDefaultValue() {
@@ -44,7 +62,7 @@ class SendMessageViewModel : ViewModel {
         cntMsg.value = 0
 
         isAnonymous.value = false
-        sendResult.value = false
+        sendResult.value = null
     }
 
 }
