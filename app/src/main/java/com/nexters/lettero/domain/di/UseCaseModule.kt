@@ -1,8 +1,11 @@
 package com.nexters.lettero.domain.di
 
 import android.app.Application
+import android.content.Context
 import com.nexters.lettero.domain.interactor.KakaoLoginUseCase
 import com.nexters.lettero.domain.interactor.KakaoTokenUseCase
+import com.nexters.lettero.domain.repository.UserRepository
+import com.nexters.lettero.domain.repository.UserRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,4 +20,7 @@ object UseCaseModule {
 
     @Provides
     fun provideKakaoTokenUseCase() = KakaoTokenUseCase()
+
+    @Provides
+    fun provideUserRepository(app: Application) = UserRepositoryImpl(app.applicationContext) as UserRepository
 }
