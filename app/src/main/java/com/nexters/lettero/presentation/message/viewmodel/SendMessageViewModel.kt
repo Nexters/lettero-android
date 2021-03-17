@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.nexters.lettero.data.model.SendMessageRequest
+import com.nexters.lettero.data.model.UserInfo
 import com.nexters.lettero.domain.repository.MessageRepository
 import com.nexters.lettero.presentation.base.ViewModel
 
@@ -22,7 +23,6 @@ class SendMessageViewModel : ViewModel {
     val TEXT_MAX_LENGTH = 100
 
     init {
-        //TODO : 실 사용자와 연결
         initDefaultValue()
     }
 
@@ -37,26 +37,29 @@ class SendMessageViewModel : ViewModel {
         if ((receiverNumber.value as? String).isNullOrEmpty()) return
         if ((sendMsg.value as? String).isNullOrEmpty()) return
 
-        //TODO : 네트워크 처리
         val msg = SendMessageRequest(
             sendMsg.value!!,
             isAnonymous.value!!,
             arrayOf(receiverNumber.value!!)
         )
+
         msgRepository.sendMessage(msg).subscribe { result, err ->
-            err.message?.let {
-                Log.d("SendMessageViewModel", it)
+            if(err != null) {
+                Log.d("SendMessageViewModel", err.localizedMessage)
                 sendResult.value = false
-            } ?: {
-                sendResult.value = true
-            }()
+
+                err.printStackTrace()
+                return@subscribe
+            }
+
+            sendResult.value = true
         }
 
         sendResult.postValue(null)
     }
 
     fun initDefaultValue() {
-        senderName.value = "aaaa"
+        senderName.value = UserInfo.getInstance().user?.nickName
         receiverNumber.value = ""
         sendMsg.value = ""
         cntMsg.value = 0
