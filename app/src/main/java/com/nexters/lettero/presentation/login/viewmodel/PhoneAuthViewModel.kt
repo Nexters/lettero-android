@@ -11,14 +11,14 @@ import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
+import com.google.gson.JsonObject
 import com.nexters.lettero.R
-import com.nexters.lettero.domain.repository.UserRepositoryImpl
+import com.nexters.lettero.domain.repository.UserRepository
 import com.nexters.lettero.presentation.base.ViewModel
-import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
-class PhoneAuthViewModel : ViewModel, PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+class PhoneAuthViewModel(val userRepository: UserRepository) : ViewModel, PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
     val phoneNumber = MutableLiveData<String>()
     val rtnNumber = MutableLiveData<String>()
     val authTimer = MutableLiveData<String>()
@@ -28,8 +28,6 @@ class PhoneAuthViewModel : ViewModel, PhoneAuthProvider.OnVerificationStateChang
 
     val SEC_INTERVAL = 1000L
     val MAX_SECOND = 60 * 2L // 120초가 최대
-
-    private val userRepository = UserRepositoryImpl()
 
     private var verificationId: String = ""
 
@@ -70,9 +68,9 @@ class PhoneAuthViewModel : ViewModel, PhoneAuthProvider.OnVerificationStateChang
             val authCredential = PhoneAuthProvider.getCredential(verificationId, it)
             FirebaseAuth.getInstance().signInWithCredential(authCredential)
                 .addOnCompleteListener { task ->
-                    if(task.isSuccessful) {
+                    if (task.isSuccessful) {
                         _resultAuthOk.value = true
-                        savePhoneNumver()
+                        saveId(task.result?.user?.uid)
                     } else {
                         _message.value = R.string.phone_auth_check_code
                         _resultAuthOk.value = false
@@ -101,12 +99,16 @@ class PhoneAuthViewModel : ViewModel, PhoneAuthProvider.OnVerificationStateChang
         verificationId = p0
     }
 
-    private fun savePhoneNumver() {
-        userRepository.savePhoneNumber(phoneNumber.value as String)
+    private fun saveId(id: String?) {
+        id?.let { uid ->
+            val sendObj: JsonObject = JsonObject()
+            sendObj.addProperty("uid", uid)
+            userRepository.savePhoneNumber(sendObj).subscribe()
+        }
     }
 
     public fun parsePhoneE164Number(number: String, countryCode: Locale): String? {
-        var e164Num:String? = null
+        var e164Num: String? = null
 
         try {
             e164Num = PhoneNumberUtils.formatNumberToE164(number, countryCode.country)
@@ -114,7 +116,7 @@ class PhoneAuthViewModel : ViewModel, PhoneAuthProvider.OnVerificationStateChang
             e164Num = null
         }
 
-        if(e164Num == null)
+        if (e164Num == null)
             _message.value = R.string.phone_auth_check_number
 
         return e164Num
