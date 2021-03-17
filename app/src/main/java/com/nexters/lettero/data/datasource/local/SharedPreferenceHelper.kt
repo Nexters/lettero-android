@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 import com.nexters.lettero.R
 import dagger.hilt.android.qualifiers.ApplicationContext
 
-class SharedPreferenceHelper(@ApplicationContext val context: Context) {
+class SharedPreferenceHelper(val context: Context) {
     val PREFERENCE_NAME = String.format("%s_preference", context.getString(R.string.app_name))
     private var _instance: SharedPreferences? = null
 
@@ -32,5 +32,13 @@ class SharedPreferenceHelper(@ApplicationContext val context: Context) {
     fun setReceiveNotice(isReceiveNotice: Boolean) {
         android.util.Log.d("set receive notice", isReceiveNotice.toString())
         getSharedPreference().edit().putBoolean("isReceiveNotice", isReceiveNotice).apply()
+    }
+
+    fun saveKeyValue(key: String, value: String) {
+        getSharedPreference().edit().putString(key, value)
+    }
+
+    fun getStringValue(key: String): String? {
+        return getSharedPreference().getString(key, "")
     }
 }
