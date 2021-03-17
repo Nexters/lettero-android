@@ -1,5 +1,6 @@
 package com.nexters.lettero.data.datasource.remote
 
+import com.google.gson.JsonObject
 import com.nexters.lettero.data.model.ThumbNailResponse
 import com.nexters.lettero.data.model.User
 import io.reactivex.Single
@@ -14,10 +15,10 @@ interface UserService {
     fun getUserInfo(): Single<User>
 
     @POST("user/phone-number")
-    fun savePhoneNumber(@Body uid: String): Single<User>
+    fun savePhoneNumber(@Body uid: JsonObject): Single<User>
     
     @POST("user/firebase-token")
-    fun saveFirebaseToken(@Body token: String): Single<User>
+    fun saveFirebaseToken(@Body token: JsonObject): Single<User>
 
     @GET("user/thumbnails")
     fun getThumbNails(): Single<List<ThumbNailResponse>>
