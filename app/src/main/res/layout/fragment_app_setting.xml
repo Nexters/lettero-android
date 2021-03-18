@@ -86,7 +86,7 @@
                 android:layout_height="25dp"
                 android:layout_marginTop="18dp"
                 android:layout_marginEnd="15dp"
-                android:checked="true"
+                android:checked="@={vm._isReceiveNoti}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -171,6 +171,7 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/text_subtitle"
                 android:textSize="20sp"
+                android:onClick="@{() -> vm.logout()}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/setting_ask" />
 
@@ -192,6 +193,7 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/text_subtitle"
                 android:textSize="20sp"
+                android:onClick="@{() -> vm.exit()}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/setting_logout" />
         </androidx.constraintlayout.widget.ConstraintLayout>

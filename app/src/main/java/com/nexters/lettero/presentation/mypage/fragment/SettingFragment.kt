@@ -4,13 +4,12 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.nexters.lettero.R
+import com.nexters.lettero.data.datasource.local.SharedPreferenceHelper
 import com.nexters.lettero.databinding.FragmentAppSettingBinding
-import com.nexters.lettero.databinding.FragmentMyPageBinding
 import com.nexters.lettero.presentation.base.BaseFragment
-import com.nexters.lettero.presentation.base.ViewModel
-import com.nexters.lettero.presentation.mypage.viewmodel.MyPageViewModel
 import com.nexters.lettero.presentation.mypage.viewmodel.SettingViewModel
 
 class SettingFragment : BaseFragment<FragmentAppSettingBinding, SettingViewModel>() {
@@ -20,8 +19,18 @@ class SettingFragment : BaseFragment<FragmentAppSettingBinding, SettingViewModel
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel = SettingViewModel(SharedPreferenceHelper(requireContext()))
+
         binding.view = this
-        binding.vm = viewModel as SettingViewModel
+        binding.vm = viewModel
+
+        initView()
+    }
+
+    fun initView() {
+        viewModel.isMoveToLogin.observe(
+            viewLifecycleOwner,
+            { if (it) findNavController().navigate(R.id.action_settingFragment_to_loginFragment) })
     }
 
     fun moveToWeb(url: String) {
