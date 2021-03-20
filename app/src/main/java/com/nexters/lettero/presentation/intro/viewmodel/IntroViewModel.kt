@@ -30,8 +30,6 @@ class IntroViewModel(val kakaoTokenUseCase: KakaoTokenUseCase, val userRepositor
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ token ->
                         token?.let {
-                            tokenResult.value = true
-
                             loadToken()
                             requestUserMe()
                         } ?: run {
@@ -53,14 +51,15 @@ class IntroViewModel(val kakaoTokenUseCase: KakaoTokenUseCase, val userRepositor
     }
 
     private fun requestUserMe() {
-        userRepository.getUserInfo().subscribe { user, err ->
-            if(err != null) {
-                tokenResult.value = false
-
-                return@subscribe
-            }
-
+        userRepository.getUserInfo().subscribe({ user ->
             userInfo.user = user
-        }
+
+            if(!user.requiredPhoneNumber)
+                tokenResult.value = false
+            else
+                tokenResult.value = true
+        }, { error ->
+            tokenResult.value = false
+        }).addTo(disposable)
     }
 }

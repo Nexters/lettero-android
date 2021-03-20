@@ -48,7 +48,7 @@ class PhoneAuthFragment : BaseFragment<FragmentPhoneAuthBinding, PhoneAuthViewMo
             registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) {
                 if (it.resultCode != Activity.RESULT_OK) return@registerForActivityResult
 
-                (binding.viewmodel as PhoneAuthViewModel).setPhoneNumber(it.data)
+                binding.viewmodel?.setPhoneNumber(it.data)
             }
 
         val hintReq = HintRequest.Builder().setPhoneNumberIdentifierSupported(true).build()

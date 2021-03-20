@@ -13,6 +13,7 @@ import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import com.google.gson.JsonObject
 import com.nexters.lettero.R
+import com.nexters.lettero.data.model.UserInfo
 import com.nexters.lettero.domain.repository.UserRepository
 import com.nexters.lettero.presentation.base.ViewModel
 import java.text.SimpleDateFormat
@@ -56,7 +57,6 @@ class PhoneAuthViewModel(val userRepository: UserRepository) : ViewModel, PhoneA
             //TODO : 외국 서비스를 할 시 바꿀 필요 있음
             val number = credential?.id?.replace("+82", "0")
 
-
             phoneNumber.value = number
         }
     }
@@ -69,8 +69,8 @@ class PhoneAuthViewModel(val userRepository: UserRepository) : ViewModel, PhoneA
             FirebaseAuth.getInstance().signInWithCredential(authCredential)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        _resultAuthOk.value = true
                         saveId(task.result?.user?.uid)
+                        UserInfo.getInstance().firebaseInfo = task.result?.user
                     } else {
                         _message.value = R.string.phone_auth_check_code
                         _resultAuthOk.value = false
@@ -103,7 +103,13 @@ class PhoneAuthViewModel(val userRepository: UserRepository) : ViewModel, PhoneA
         id?.let { uid ->
             val sendObj: JsonObject = JsonObject()
             sendObj.addProperty("uid", uid)
-            userRepository.savePhoneNumber(sendObj).subscribe()
+            userRepository.savePhoneNumber(sendObj).subscribe({ user ->
+                UserInfo.getInstance().user = user
+                _resultAuthOk.value = true
+            }, { err ->
+                _message.value = R.string.common_err
+                _resultAuthOk.value = false
+            })
         }
     }
 
