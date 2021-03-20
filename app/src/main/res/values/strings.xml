@@ -67,4 +67,6 @@
     <string name="select">선택</string>
     
     <string name="send_msg_err">메시지를 보내는 중 오류가 발생하였습니다. 추후에 다시 시도 해주세요.</string>
+
+    <string name="common_err">에러가 발생하였습니다.\n잠시 후 시도해 주세요</string>
 </resources>
