@@ -23,9 +23,7 @@ class SettingFragment : BaseFragment<FragmentAppSettingBinding, SettingViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel = SettingViewModel(SharedPreferenceHelper(requireContext()))
-
+        
         binding.view = this
         binding.vm = viewModel
 
