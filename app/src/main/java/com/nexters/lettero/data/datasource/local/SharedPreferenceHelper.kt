@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import com.nexters.lettero.R
 
 class SharedPreferenceHelper(val context: Context) {
+
     val PREFERENCE_NAME = String.format("%s_preference", context.getString(R.string.app_name))
     private var _instance: SharedPreferences? = null
 
