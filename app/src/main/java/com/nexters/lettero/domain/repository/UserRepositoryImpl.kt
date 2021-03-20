@@ -37,8 +37,16 @@ class UserRepositoryImpl(context: Context) : UserRepository {
         sharedPreferenceHelper.saveKeyValue(key, value)
     }
 
+    override fun saveKeyValue(key: String, value: Boolean) {
+        sharedPreferenceHelper.saveKeyValue(key, value)
+    }
+
     override fun getStringValue(key: String): String? {
         return sharedPreferenceHelper.getStringValue(key)
+    }
+
+    override fun getBooleanValue(key: String, defValue:Boolean): Boolean {
+        return sharedPreferenceHelper.getBooleanValue(key, defValue)
     }
 
 }

@@ -8,6 +8,7 @@ import com.nexters.lettero.presentation.login.viewmodel.LoginViewModel
 import com.nexters.lettero.presentation.login.viewmodel.PhoneAuthViewModel
 import com.nexters.lettero.presentation.main.viewmodel.MainViewModel
 import com.nexters.lettero.presentation.mypage.viewmodel.MyPageViewModel
+import com.nexters.lettero.presentation.mypage.viewmodel.SettingViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -40,4 +41,7 @@ object ViewModelModule {
 
     @Provides
     fun provideMyPageViewModel(userRepository: UserRepository) = MyPageViewModel(userRepository)
+
+    @Provides
+    fun provideSettingViewModel(userRepository: UserRepository, kakaoTokenUseCase: KakaoTokenUseCase) = SettingViewModel(userRepository, kakaoTokenUseCase)
 }

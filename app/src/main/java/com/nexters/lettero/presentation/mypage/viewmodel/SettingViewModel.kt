@@ -2,47 +2,42 @@ package com.nexters.lettero.presentation.mypage.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.nexters.lettero.data.datasource.local.SharedPreferenceHelper
+import com.kakao.sdk.user.UserApiClient
+import com.nexters.lettero.domain.interactor.KakaoTokenUseCase
+import com.nexters.lettero.domain.repository.UserRepository
 import com.nexters.lettero.presentation.base.ViewModel
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
 
-class SettingViewModel() : ViewModel {
-    var sharedPreferenceHelper: SharedPreferenceHelper? = null
-
+class SettingViewModel(val userRepository: UserRepository, val kakaoTokenUseCase: KakaoTokenUseCase) : ViewModel {
     private val _isMoveToLogin = MutableLiveData<Boolean>(false)
     val isMoveToLogin: LiveData<Boolean> = _isMoveToLogin
+
     val _isReceiveNoti: MutableLiveData<Boolean> = MutableLiveData<Boolean>(getReceiveNoticeValue())
 
-    constructor(preferenceHelper: SharedPreferenceHelper): this() {
+    private val disposable = CompositeDisposable()
 
-        sharedPreferenceHelper = preferenceHelper
-
+    init {
         _isReceiveNoti.value = getReceiveNoticeValue()
-        _isReceiveNoti.observeForever {
-            android.util.Log.d("setting view model", it.toString())
-            setReceiveNoticeValue(it)
-        }
+        _isReceiveNoti.observeForever { setReceiveNoticeValue(it) }
     }
 
     fun getReceiveNoticeValue(): Boolean {
-        sharedPreferenceHelper?.let {
-            return it.isReceiveNotice()
-        }
-
-        return true
+        return userRepository.getBooleanValue("isReceiveNotice", true)
     }
 
     fun setReceiveNoticeValue(value: Boolean) {
-        sharedPreferenceHelper?.setReceiveNotice(value)
+        userRepository.saveKeyValue("isReceiveNotice", value)
     }
 
     fun logout() {
-        sharedPreferenceHelper?.let {
-            it.setAutoLogin(false)
-            _isMoveToLogin.value = true
-        }
+        kakaoTokenUseCase.logout().subscribe().addTo(disposable)
+
+        _isMoveToLogin.value = true
     }
 
     fun exit() {
+        kakaoTokenUseCase.logout().subscribe().addTo(disposable)
         _isMoveToLogin.value = true
     }
 }

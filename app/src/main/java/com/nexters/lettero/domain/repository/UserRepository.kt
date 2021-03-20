@@ -17,5 +17,9 @@ interface UserRepository {
 
     fun saveKeyValue(key: String, value: String)
 
+    fun saveKeyValue(key: String, value: Boolean)
+
     fun getStringValue(key: String): String?
+
+    fun getBooleanValue(key: String, defValue: Boolean): Boolean
 }
