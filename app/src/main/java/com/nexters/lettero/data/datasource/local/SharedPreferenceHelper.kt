@@ -18,11 +18,11 @@ class SharedPreferenceHelper(val context: Context) {
     }
 
     fun saveKeyValue(key: String, value: String) {
-        getSharedPreference().edit().putString(key, value)
+        getSharedPreference().edit().putString(key, value).commit()
     }
 
     fun saveKeyValue(key: String, value: Boolean) {
-        getSharedPreference().edit().putBoolean(key, value)
+        getSharedPreference().edit().putBoolean(key, value).commit()
     }
 
     fun getStringValue(key: String): String? {
