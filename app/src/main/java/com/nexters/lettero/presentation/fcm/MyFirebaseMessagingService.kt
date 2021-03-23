@@ -9,13 +9,23 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import com.google.gson.JsonObject
 import com.nexters.lettero.R
+import com.nexters.lettero.data.model.UserInfo
+import com.nexters.lettero.domain.repository.UserRepository
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MyFirebaseMessagingService : FirebaseMessagingService() {
+    @Inject
+    lateinit var userRepository: UserRepository
+
     override fun onNewToken(token: String) {
         super.onNewToken(token)
 
         Log.i("FirebaseCloudMessaging", token)
+        saveFirebaseToken(token)
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
@@ -50,5 +60,16 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         with(NotificationManagerCompat.from(this@MyFirebaseMessagingService)) {
             notify(notificationId, builder.build())
         }
+    }
+
+    private fun saveFirebaseToken(token: String) {
+        val json = JsonObject()
+        json.addProperty("firebaseToken", token)
+
+        userRepository.saveFirebaseToken(json).subscribe({ user ->
+            UserInfo.getInstance().user = user
+        }, { err ->
+            android.util.Log.d("firebase save token error", err.message.toString())
+        }).dispose()
     }
 }
