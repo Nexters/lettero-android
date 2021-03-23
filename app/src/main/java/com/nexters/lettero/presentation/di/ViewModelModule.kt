@@ -50,7 +50,7 @@ object ViewModelModule {
 
     @Provides
     fun provideMyPageViewModel(userRepository: UserRepository) = MyPageViewModel(userRepository)
-
+    
     @Provides
     fun provideSettingViewModel(userRepository: UserRepository, kakaoTokenUseCase: KakaoTokenUseCase) = SettingViewModel(userRepository, kakaoTokenUseCase)
 }
