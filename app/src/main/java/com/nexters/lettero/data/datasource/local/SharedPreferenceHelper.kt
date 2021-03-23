@@ -32,12 +32,4 @@ class SharedPreferenceHelper(val context: Context) {
     fun getBooleanValue(key: String, defValue: Boolean): Boolean {
         return getSharedPreference().getBoolean(key, defValue)
     }
-
-    fun saveKeyValue(key: String, value: String) {
-        getSharedPreference().edit().putString(key, value)
-    }
-
-    fun getStringValue(key: String): String? {
-        return getSharedPreference().getString(key, "")
-    }
 }
