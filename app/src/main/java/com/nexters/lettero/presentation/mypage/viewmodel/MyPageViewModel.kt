@@ -3,11 +3,12 @@ package com.nexters.lettero.presentation.mypage.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.nexters.lettero.data.model.User
+import com.nexters.lettero.data.model.UserInfo
+import com.nexters.lettero.domain.repository.UserRepository
 import com.nexters.lettero.domain.repository.UserRepositoryImpl
 import com.nexters.lettero.presentation.base.ViewModel
 
-class MyPageViewModel : ViewModel {
-    val userRepository = UserRepositoryImpl()
+class MyPageViewModel(val userRepository: UserRepository) : ViewModel {
 
     private val _name = MutableLiveData<String>()
     val name: LiveData<String>  = _name
@@ -22,9 +23,9 @@ class MyPageViewModel : ViewModel {
         userRepository.getUserInfo().subscribe({
             user: User?, t2: Throwable? ->
             user?.let {
-                _name.value = user.nickName
-                _phoneNumber.value = user.userId.toString()
-                _thumbNailUrl.value = user.thumbnail
+                _name.value = UserInfo.getInstance().user?.nickName
+                _phoneNumber.value = UserInfo.getInstance().user?.userId.toString()
+                _thumbNailUrl.value = UserInfo.getInstance().user?.thumbnail
             }
             t2?.let {
                 _name.value = ""

@@ -18,18 +18,23 @@ import com.nexters.lettero.R
 import com.nexters.lettero.databinding.FragmentPhoneAuthBinding
 import com.nexters.lettero.presentation.base.BaseFragment
 import com.nexters.lettero.presentation.login.viewmodel.PhoneAuthViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class PhoneAuthFragment : BaseFragment<FragmentPhoneAuthBinding, PhoneAuthViewModel>() {
     override val layoutRes: Int = R.layout.fragment_phone_auth
-    override var viewModel: PhoneAuthViewModel = PhoneAuthViewModel()
+
+    @Inject
+    override lateinit var viewModel: PhoneAuthViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.view = this
-        binding.viewmodel = viewModel as PhoneAuthViewModel
+        binding.viewmodel = viewModel
         binding.phoneAuthNumber.addTextChangedListener(PhoneNumberFormattingTextWatcher())
 
         requestPhoneNumber()
@@ -43,7 +48,7 @@ class PhoneAuthFragment : BaseFragment<FragmentPhoneAuthBinding, PhoneAuthViewMo
             registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) {
                 if (it.resultCode != Activity.RESULT_OK) return@registerForActivityResult
 
-                (binding.viewmodel as PhoneAuthViewModel).setPhoneNumber(it.data)
+                binding.viewmodel?.setPhoneNumber(it.data)
             }
 
         val hintReq = HintRequest.Builder().setPhoneNumberIdentifierSupported(true).build()

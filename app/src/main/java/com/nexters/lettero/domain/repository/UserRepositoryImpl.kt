@@ -1,5 +1,8 @@
 package com.nexters.lettero.domain.repository
 
+import android.content.Context
+import com.google.gson.JsonObject
+import com.nexters.lettero.data.datasource.local.SharedPreferenceHelper
 import com.nexters.lettero.data.datasource.remote.LetteroNetworkHelper
 import com.nexters.lettero.data.datasource.remote.UserService
 import com.nexters.lettero.data.model.ThumbNailResponse
@@ -8,18 +11,19 @@ import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class UserRepositoryImpl() : UserRepository {
+class UserRepositoryImpl(context: Context) : UserRepository {
     private val userService = LetteroNetworkHelper.getService(UserService::class.java)
+    private val sharedPreferenceHelper: SharedPreferenceHelper = SharedPreferenceHelper(context)
 
     override fun getUserInfo(): Single<User> = userService.getUserInfo()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
 
-    override fun savePhoneNumber(number: String): Single<User> = userService.savePhoneNumber(number)
+    override fun savePhoneNumber(number: JsonObject): Single<User> = userService.savePhoneNumber(number)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
 
-    override fun saveFirebaseToken(token: String): Single<User> =
+    override fun saveFirebaseToken(token: JsonObject): Single<User> =
         userService.saveFirebaseToken(token)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -28,5 +32,21 @@ class UserRepositoryImpl() : UserRepository {
         userService.getThumbNails()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+
+    override fun saveKeyValue(key: String, value: String) {
+        sharedPreferenceHelper.saveKeyValue(key, value)
+    }
+
+    override fun saveKeyValue(key: String, value: Boolean) {
+        sharedPreferenceHelper.saveKeyValue(key, value)
+    }
+
+    override fun getStringValue(key: String): String? {
+        return sharedPreferenceHelper.getStringValue(key)
+    }
+
+    override fun getBooleanValue(key: String, defValue:Boolean): Boolean {
+        return sharedPreferenceHelper.getBooleanValue(key, defValue)
+    }
 
 }

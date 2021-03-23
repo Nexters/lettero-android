@@ -3,9 +3,9 @@ package com.nexters.lettero.data.datasource.local
 import android.content.Context
 import android.content.SharedPreferences
 import com.nexters.lettero.R
-import dagger.hilt.android.qualifiers.ApplicationContext
 
-class SharedPreferenceHelper(@ApplicationContext val context: Context) {
+class SharedPreferenceHelper(val context: Context) {
+
     val PREFERENCE_NAME = String.format("%s_preference", context.getString(R.string.app_name))
     private var _instance: SharedPreferences? = null
 
@@ -17,20 +17,19 @@ class SharedPreferenceHelper(@ApplicationContext val context: Context) {
         return _instance as SharedPreferences
     }
 
-    fun isAutoLogin(): Boolean {
-        return getSharedPreference().getBoolean("isAutoLogin", false)
+    fun saveKeyValue(key: String, value: String) {
+        getSharedPreference().edit().putString(key, value).commit()
     }
 
-    fun setAutoLogin(isAutoLogin: Boolean) {
-        getSharedPreference().edit().putBoolean("isAutoLogin", isAutoLogin).apply()
+    fun saveKeyValue(key: String, value: Boolean) {
+        getSharedPreference().edit().putBoolean(key, value).commit()
     }
 
-    fun isReceiveNotice(): Boolean {
-        return getSharedPreference().getBoolean("isReceiveNotice", true)
+    fun getStringValue(key: String): String? {
+        return getSharedPreference().getString(key, "")
     }
 
-    fun setReceiveNotice(isReceiveNotice: Boolean) {
-        android.util.Log.d("set receive notice", isReceiveNotice.toString())
-        getSharedPreference().edit().putBoolean("isReceiveNotice", isReceiveNotice).apply()
+    fun getBooleanValue(key: String, defValue: Boolean): Boolean {
+        return getSharedPreference().getBoolean(key, defValue)
     }
 }
