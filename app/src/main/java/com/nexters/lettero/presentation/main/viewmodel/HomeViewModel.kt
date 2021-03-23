@@ -2,26 +2,24 @@ package com.nexters.lettero.presentation.main.viewmodel
 
 import androidx.databinding.ObservableArrayList
 import com.google.android.material.tabs.TabLayout
+import com.nexters.lettero.data.mapper.ReceiveMessageMapper
+import com.nexters.lettero.data.mapper.SendMessageMapper
+import com.nexters.lettero.domain.interactor.GetReceiveMessagesUseCase
+import com.nexters.lettero.domain.interactor.GetSendMessagesUseCase
 import com.nexters.lettero.domain.model.Message
 import com.nexters.lettero.presentation.base.ViewModel
 
-class HomeViewModel : ViewModel {
+class HomeViewModel(
+    private val getReceiveMessagesUseCase: GetReceiveMessagesUseCase,
+    private val getSendMessagesUseCase: GetSendMessagesUseCase
+) : ViewModel {
     private val inBoxTabPosition = 0
     private val outBoxTabPosition = 1
 
-    val messageItems = ObservableArrayList<Message>().apply {
-        val items = listOf(
-            Message("원일준", ""),
-            Message("차서현", ""),
-            Message("이상윤", ""),
-            Message("박나래", ""),
-            Message("박주리", ""),
-            Message("이송미", ""),
-            Message("박영환", "")
-        )
+    private val receiveMessages = mutableListOf<Message>()
+    private val sendMessages = mutableListOf<Message>()
 
-        addAll(items)
-    }
+    val messageItems = ObservableArrayList<Message>()
 
     val onTabSelectedListener = object : TabLayout.OnTabSelectedListener {
         override fun onTabReselected(tab: TabLayout.Tab?) {}
@@ -30,11 +28,29 @@ class HomeViewModel : ViewModel {
             tab?.run {
                 when (position) {
                     inBoxTabPosition -> {
+                        messageItems.clear()
+                        messageItems.addAll(receiveMessages)
                     }
                     outBoxTabPosition -> {
+                        messageItems.clear()
+                        messageItems.addAll(sendMessages)
+                    }
+                    else -> {
                     }
                 }
             }
         }
+    }
+
+    init {
+        getReceiveMessagesUseCase.buildUseCase(Unit).subscribe(
+            { messages -> receiveMessages.addAll(messages.map(ReceiveMessageMapper::toDomain)) },
+            { e -> }
+        )
+
+        getSendMessagesUseCase.buildUseCase(Unit).subscribe(
+            { messages -> sendMessages.addAll(messages.map(SendMessageMapper::toDomain)) },
+            { e -> }
+        )
     }
 }

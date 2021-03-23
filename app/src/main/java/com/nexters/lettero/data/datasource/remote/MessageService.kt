@@ -15,7 +15,7 @@ interface MessageService {
     fun findReceiveMessages(): Single<List<ReceiveMessage>>
 
     @GET("/api/send-messages")
-    fun findSendMessages():Single<List<SendMessage>>
+    fun findSendMessages(): Single<List<SendMessage>>
 
     @POST("/api/message")
     fun sendMessage(@Body msgObject: SendMessageRequest): Single<SendMessageResponse>

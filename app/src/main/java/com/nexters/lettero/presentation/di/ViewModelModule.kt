@@ -1,11 +1,14 @@
 package com.nexters.lettero.presentation.di
 
+import com.nexters.lettero.domain.interactor.GetReceiveMessagesUseCase
+import com.nexters.lettero.domain.interactor.GetSendMessagesUseCase
 import com.nexters.lettero.domain.interactor.KakaoLoginUseCase
 import com.nexters.lettero.domain.interactor.KakaoTokenUseCase
 import com.nexters.lettero.domain.repository.UserRepository
 import com.nexters.lettero.presentation.intro.viewmodel.IntroViewModel
 import com.nexters.lettero.presentation.login.viewmodel.LoginViewModel
 import com.nexters.lettero.presentation.login.viewmodel.PhoneAuthViewModel
+import com.nexters.lettero.presentation.main.viewmodel.HomeViewModel
 import com.nexters.lettero.presentation.main.viewmodel.MainViewModel
 import com.nexters.lettero.presentation.mypage.viewmodel.MyPageViewModel
 import com.nexters.lettero.presentation.mypage.viewmodel.SettingViewModel
@@ -20,6 +23,12 @@ object ViewModelModule {
 
     @Provides
     fun provideMainViewModel() = MainViewModel()
+
+    @Provides
+    fun provideHomeViewModel(
+        getReceiveMessagesUseCase: GetReceiveMessagesUseCase,
+        getSendMessagesUseCase: GetSendMessagesUseCase
+    ) = HomeViewModel(getReceiveMessagesUseCase, getSendMessagesUseCase)
 
     @Provides
     fun provideIntroViewModel(
