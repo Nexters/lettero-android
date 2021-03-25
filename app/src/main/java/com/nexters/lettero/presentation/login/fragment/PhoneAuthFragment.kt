@@ -58,7 +58,7 @@ class PhoneAuthFragment : BaseFragment<FragmentPhoneAuthBinding, PhoneAuthViewMo
 
     fun moveToMainFragment() {
         (viewModel as PhoneAuthViewModel).resultAuthOk.observe(viewLifecycleOwner, Observer {
-            if(it)
+            if (it)
                 findNavController().navigate(R.id.action_phoneAuthFragment_to_mainFragment)
         })
     }
@@ -84,7 +84,7 @@ class PhoneAuthFragment : BaseFragment<FragmentPhoneAuthBinding, PhoneAuthViewMo
 
     fun showMessage() {
         viewModel.message.observe(viewLifecycleOwner, Observer {
-            it?.let{
+            it?.let {
                 Toast.makeText(requireContext(), getString(it), Toast.LENGTH_SHORT).show()
             }
         })

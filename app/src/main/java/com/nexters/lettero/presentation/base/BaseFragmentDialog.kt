@@ -11,7 +11,7 @@ import androidx.fragment.app.DialogFragment
 import com.nexters.lettero.BR
 import com.nexters.lettero.R
 
-abstract class BaseFragmentDialog<VB : ViewDataBinding, VM : ViewModel> : DialogFragment() {
+abstract class  BaseFragmentDialog<VB : ViewDataBinding, VM : ViewModel> : DialogFragment() {
     protected lateinit var binding: VB
     protected abstract var viewModel: ViewModel
 
